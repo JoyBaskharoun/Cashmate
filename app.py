@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect
 import json
-from models import add_transaction, get_summary, recent_transactions
+from models import add_transaction, get_summary, recent_transactions,load_transaction, filter_transactions_by_date, render_grouped_transactions
 
 app = Flask(__name__)
 USER_FILE = "data/users.json"
@@ -128,6 +128,28 @@ def add():
 
     # Redirect back to dashboard after adding
     return redirect("/dashboard")
+
+
+
+@app.route("/expenses")
+def expenses():
+    filter_type = request.args.get("filter", "week")
+    transactions = load_transaction()
+    expenses_html = render_grouped_transactions(transactions, "expense", filter_type)
+    html = get_html("expenses")
+    html = html.replace("{{expenses}}", expenses_html)
+    return html
+
+
+
+@app.route("/incomes")
+def incomes():
+    filter_type = request.args.get("filter", "week")
+    transactions = load_transaction()
+    incomes_html = render_grouped_transactions(transactions, "income", filter_type)
+    html = get_html("incomes")
+    html = html.replace("{{incomes}}", incomes_html)
+    return html
 
 
 @app.route("/logout")

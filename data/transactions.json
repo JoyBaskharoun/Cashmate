@@ -5,5 +5,47 @@
         "category": "Other",
         "timestamp": "2025-05-08T11:34:01.095241",
         "note": "j"
+    },
+    {
+        "amount": 1.0,
+        "t_type": "income",
+        "category": "Other",
+        "timestamp": "2024-05-08T11:34:01.095241",
+        "note": "j"
+    },
+    {
+        "amount": 1.0,
+        "t_type": "income",
+        "category": "Other",
+        "timestamp": "2025-04-08T11:34:01.095241",
+        "note": "j"
+    },
+    {
+        "amount": 1.0,
+        "t_type": "expense",
+        "category": "Transport",
+        "timestamp": "2025-05-08T13:10:01.336317",
+        "note": ""
+    },
+    {
+        "amount": 5.0,
+        "t_type": "income",
+        "category": "Food",
+        "timestamp": "2025-05-08T13:10:24.868162",
+        "note": "n"
+    },
+    {
+        "amount": 5.0,
+        "t_type": "expense",
+        "category": "food",
+        "timestamp": "2024-06-08T13:10:01.336317",
+        "note": ""
+    },
+    {
+        "amount": 1.0,
+        "t_type": "expense",
+        "category": "Transport",
+        "timestamp": "2024-05-08T13:10:01.336317",
+        "note": "note"
     }
 ]

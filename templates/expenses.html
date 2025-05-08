@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Expenses</title>
+  </head>
+  <body>
+    <h2>All Expenses</h2>
+
+    <form method="GET" action="/expenses">
+      <label for="filter">Filter by:</label>
+      <select name="filter" id="filter">
+        <option value="day">Day</option>
+        <option value="week" selected>Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+        <option value="all-time">All time</option>
+      </select>
+      <button type="submit">Apply</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="expenses-table">
+        {{expenses}}
+      </tbody>
+    </table>
+  </body>
+
+  <script src="/static/table.js"></script>
+</html>

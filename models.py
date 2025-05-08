@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 # Transactions
@@ -105,7 +105,7 @@ def recent_transactions(limit=10):
     for i in range(len(transactions)):
         for j in range(i + 1, len(transactions)):
             if transactions[i].timestamp < transactions[j].timestamp:
-                # simply swap if j is more recent than i
+                # swap if j is more recent than i
                 transactions[i], transactions[j] = transactions[j], transactions[i]
                 
     recent = []
@@ -117,3 +117,80 @@ def recent_transactions(limit=10):
         count += 1
     
     return recent
+
+
+
+# Filter transaction
+def filter_transactions_by_date(transactions, filter_type):
+    now = datetime.now()
+    
+    if filter_type == "day":
+        cutoff = now - timedelta(days=1)
+    elif filter_type == "week":
+        cutoff = now - timedelta(weeks=1)
+    elif filter_type == "month":
+        cutoff = now - timedelta(days=30)
+    elif filter_type == "year":
+        cutoff = now - timedelta(days=365)
+    elif filter_type == "all-time":
+        return transactions
+    else:
+        # Default fallback (week)
+        cutoff = now - timedelta(weeks=1)
+    
+    filtered = []
+    for t in transactions:
+        t_date = datetime.fromisoformat(t.timestamp)
+        if t_date >= cutoff:
+            filtered.append(t)
+    return filtered
+
+
+def render_grouped_transactions(transactions, t_type_filter, filter_type):
+    # Filter by type (expense or income)
+    filtered_type = [t for t in transactions if t.t_type.lower() == t_type_filter.lower()]
+    
+    # Filter by date range
+    filtered = filter_transactions_by_date(filtered_type, filter_type)
+    
+    # Group by category
+    category_dict = {}
+    for t in filtered:
+        category_dict.setdefault(t.category, []).append(t)
+    
+    # Build HTML rows with collapsible details
+    html_rows = ""
+    for idx, (category, txns) in enumerate(category_dict.items()):
+        total = sum(t.amount for t in txns)
+        html_rows += f"""
+        <tr class="collapsible" id="{t_type_filter}-row-{idx}">
+            <td>{category}</td>
+            <td>${total:.2f}</td>
+        </tr>
+        <tr class="content" id="{t_type_filter}-content-row-{idx}" style="display:none;">
+            <td colspan="2">
+                <table class="inner-table">
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+        """
+        for t in txns:
+            html_rows += f"""
+                        <tr>
+                            <td>${t.amount:.2f}</td>
+                            <td>{t.formatted_date()}</td>
+                            <td>{t.note}</td>
+                        </tr>
+            """
+        html_rows += """
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        """
+    return html_rows
