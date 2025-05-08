@@ -1,5 +1,6 @@
-from flask import Flask, request
+from flask import Flask, request, redirect
 import json
+from models import add_transaction, get_summary, recent_transactions
 
 app = Flask(__name__)
 USER_FILE = "data/users.json"
@@ -74,9 +75,60 @@ def dashboard():
     if not username:
         return '<meta http-equiv="refresh" content="0; url=/login" />'
         
-    html = get_html("dashboard")
+    html = get_html("dashboard")    
+    
+    transactions = recent_transactions()
+    summary = get_summary()
+    
+    # Build transactions HTML
+    transactions_html = ""
+    for t in transactions:
+        transactions_html += f"""
+        <tr>
+            <td>{t.t_type}</td>
+            <td>{t.amount}</td>
+            <td>{t.category}</td>
+            <td>{t.formatted_date()}</td>
+            <td>{t.note}</td>
+        </tr>
+        """
+    
+    # Replace placeholders
     html = html.replace("{{username}}", username)
+    html = html.replace("{{transactions}}", transactions_html)
+    html = html.replace("{{total_income}}", str(round(summary['income'], 2)))
+    html = html.replace("{{total_expense}}", str(round(summary['expense'], 2)))
+    html = html.replace("{{balance}}", str(round(summary['balance'], 2)))
+    
     return html
+
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "GET":
+        html = get_html("add")
+        return html
+
+    # POST method
+    amount = request.form.get("amount")
+    t_type = request.form.get("type")
+    category = request.form.get("category")
+    note = request.form.get("note", "")  
+
+    if not amount or not t_type or not category:
+        return "Missing required fields", 400
+
+    # Convert amount to float
+    try:
+        amount = float(amount)
+    except ValueError:
+        return "Invalid amount", 400
+
+    add_transaction(amount, t_type, category, note)
+
+    # Redirect back to dashboard after adding
+    return redirect("/dashboard")
+
 
 @app.route("/logout")
 def logout():

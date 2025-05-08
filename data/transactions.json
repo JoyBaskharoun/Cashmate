@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "amount": 1.0,
+        "t_type": "income",
+        "category": "Other",
+        "timestamp": "2025-05-08T11:34:01.095241",
+        "note": "j"
+    }
+]

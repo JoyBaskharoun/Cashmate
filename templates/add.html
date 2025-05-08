@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add transaction</title>
+    <link rel="stylesheet" href="../static/style.css" />
+</head>
+<body>
+    
+     <!-- 📝 Add Transaction Form -->
+  <section>
+    <h2>Add Transaction</h2>
+    <form action="/add" method="POST" id="transaction-form">
+      <input type="number" name="amount" placeholder="Amount" required>
+      <select name="type" required>
+        <option value="" disabled selected>Select Type</option>
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <select name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Salary">Salary</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="text" name="note" placeholder="Note (optional)">
+      <button type="submit">Add</button>
+    </form>
+    <!-- 📊 Summary Section -->
+  <section>
+
+</body>
+</html>
