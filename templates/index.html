@@ -7,19 +7,34 @@
     <title>CashMate</title>
   </head>
   <body>
-    <main>
+    <nav id="main-nav">
+      <a href="/"><img src="../static/images/logo.svg" alt="logo" id="logo" /></a>
+    </nav>
+    
+    <main class="main-centered">
       <section id="hero-section-container">
-        <div id="hero-img">
-            <h1>Welcome to CashMate!</h1>
+        <img
+          src="../static/images/home.svg"
+          alt="dashboard illustration"
+          id="hero-img"
+        />
+
+        <h1 id="hero-h1">Track smarter, Spend better.</h1>
+
+        <div>
+          <h3>Stay on top of your finances effortlessly with CashMate.</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet eos
-            quos voluptates quibusdam dolores beatae voluptate, aliquam earum
-            voluptatibus recusandae!
+            Track your income and spending, filter by category or date, and view
+            instant summaries.
           </p>
+          <p>All in a clean, distraction-free space.</p>
         </div>
+
         <section id="sign-options-container">
-            <a href="/login">Sign In</a>
+          <button class="primary-button"><a href="/login">Log In</a></button>
+          <button class="secondary-button">
             <a href="/signup">Sign Up</a>
+          </button>
         </section>
       </section>
     </main>

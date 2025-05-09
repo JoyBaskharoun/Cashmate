@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect
 import json
-from models import add_transaction, get_summary, recent_transactions,load_transaction, filter_transactions_by_date, render_grouped_transactions
+from models import add_transaction, get_summary, recent_transactions,load_transaction, render_grouped_transactions
 
 app = Flask(__name__)
 USER_FILE = "data/users.json"

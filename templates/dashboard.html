@@ -7,36 +7,40 @@
     <link rel="stylesheet" href="../static/style.css" />
   </head>
   <body>
-    <p id="welcomeUserMsg">Hey {{username}}!</p>
+    <nav id="main-nav">
+      <img src="../static/images/logo.svg" alt="logo" id="logo" />
+      <p id="welcomeUserMsg">Hey {{username}}!</p>
+    </nav>
 
-    <a href="/add" id="add-transaction"> Add transaction</a> <br>
-    <a href="/expenses" id="all-expenses"> All expenses</a>
-    <a href="/incomes" id="all-incomes"> All incomes</a>
+    <main>
+      <a href="/add" id="add-transaction"> Add transaction</a> <br />
+      <a href="/expenses" id="all-expenses"> All expenses</a>
+      <a href="/incomes" id="all-incomes"> All incomes</a>
 
-    <h2>Summary</h2>
-    <div id="summary">
-      <p>Total Income: $<span id="income">{{total_income}}</span></p>
-      <p>Total Expenses: $<span id="expense">{{total_expense}}</span></p>
-      <p>Balance: $<span id="balance">{{balance}}</span></p>
-    </div>
-    
-    <section>
-      <h2>Recent Transactions</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Note</th>
-          </tr>
-        </thead>
-        <tbody id="transaction-table">
-          {{transactions}}
-        </tbody>
-      </table>
-    </section>
-    
+      <h2>Summary</h2>
+      <div id="summary">
+        <p>Total Income: $<span id="income">{{total_income}}</span></p>
+        <p>Total Expenses: $<span id="expense">{{total_expense}}</span></p>
+        <p>Balance: $<span id="balance">{{balance}}</span></p>
+      </div>
+
+      <section>
+        <h2>Recent Transactions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="transaction-table">
+            {{transactions}}
+          </tbody>
+        </table>
+      </section>
+    </main>
   </body>
 </html>

@@ -1,15 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+    /* colors */
+    --primary: rgba(46, 31, 71, 1);
+    --accent: rgba(231, 109, 109, 1);
+    --secondary: rgba(235, 221, 203, 1);
+    --secondary-50: rgba(235, 221, 203, .5);
+    --background: rgba(253, 249, 243, 1);
+    --positive-signal: rgba(217, 232, 164, 1);
+    --negative-signal: rgba(141, 74, 86, 1);
+    --text-primary: rgba(42, 42, 42, 1);
+    --text-secondary: rgba(134, 134, 134, 1);
+
+    --white: #ffffff;
+
+    /* padding */
+    --main-padding: 1em 8%;
+
+    /* fonts */
+    --main-font: "IBM Plex Sans", sans-serif;
+    --accent-font: "Space Grotesk", sans-serif;
+    --text-body-size: 16px
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: url("images/noise-pattern.png") 0% 0% / 150px 150px repeat,
+        var(--background);
+    font-family: var(--main-font);
+    font-size: var(--text-body-size);
+    color: var(--text-primary);
+    height: 100vh;
+}
+
+/* fonts */
+h1,
+h2,
+h3 {
+    font-family: var(--accent-font);
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* buttons */
+button {
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    display: flex;
+    padding: 8px 24px;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: 2px solid var(--accent);
+    gap: 5px;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--accent);
+    color: var(--background);
+}
+
+.secondary-button {
+    color: var(--accent);
+}
+
+
+/* inputs */
+input {
+    border: none;
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    padding: 12px 14px;
+    width: 100%;
+}
+
+/* Navbar */
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--main-padding);
+}
+
+#logo {
+    width: 100px;
+}
+
+#welcomeUserMsg {
+    font-family: var(--accent-font);
+    font-weight: 500;
+}
+
+/* Main tag */
+main {
+    padding: var(--main-padding);
+}
+
+/* home */
+.main-centered {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* hero section */
+#hero-section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-img {
+    width: 13em;
+}
+
+#hero-h1 {
+    font-size: 48px;
+    color: var(--primary);
+}
+
+#hero-section-container div {
+    margin: 24px 0;
+}
+
+#sign-options-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px
+}
+
+
+/* login */
+.login-form-container {
+    display: flex;
+    padding: 40px 80px;
+    align-items: center;
+    gap: 80px;
+    height: fit-content;
+
+    border-radius: 24px;
+    background: var(--secondary);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.login-img {
+    width: 280px;
+}
+
+.input-fields-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    align-self: stretch;
+
+    width: 280px;
+}
+
+/* Collapsible Tables   */
 tr.collapsible {
     cursor: pointer;
     background-color: #f9f9f9;
 }
+
 tr.content {
     background-color: #f1f1f1;
 }
+
 .inner-table {
     width: 100%;
     border-collapse: collapse;
 }
-.inner-table th, .inner-table td {
+
+.inner-table th,
+.inner-table td {
     border: 1px solid #ddd;
     padding: 4px;
 }

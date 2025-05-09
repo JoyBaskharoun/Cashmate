@@ -3,22 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>Login</title>
   </head>
   <body>
-    <h2>Login</h2>
-    <form method="post" action="/login">
-      <label for="username">Username</label>
-      <input id="username" name="username" type="text" required />
+    <nav id="main-nav">
+      <a href="/"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
+    </nav>
 
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" required />
+    <main class="main-centered">
+      <form method="post" action="/login" class="login-form-container">
+        <div>
+          <img
+            src="../static/images/login.svg"
+            alt="mobile login form illustration"
+            class="login-img"
+          />
+        </div>
 
-      <button type="submit">Sign In</button>
-    </form>
+        <div class="login-form">
+          <h3>Welcome back!</h3>
 
-    <div class="signup-link">
-      Don't have an account? <a href="/signup">Sign Up</a>
-    </div>
+          <div class="input-fields-container">
+            <input
+              id="username"
+              name="username"
+              type="text"
+              required
+              placeholder="First Name"
+            />
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+
+          <button type="submit" class="primary-button" style="width: 100%">
+            Sign In
+          </button>
+          <div class="signup-link">
+            Don't have an account? <a href="/signup" class="link">Sign Up</a>
+          </div>
+        </div>
+      </form>
+    </main>
   </body>
 </html>
