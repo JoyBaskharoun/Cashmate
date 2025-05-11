@@ -1,11 +1,12 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, session
 import json
 from models import add_transaction, get_summary, recent_transactions,load_transaction, render_grouped_transactions
 
 app = Flask(__name__)
+app.secret_key = "strong-secret-key"
 USER_FILE = "data/users.json"
 
-# Password "hash" (adds "xyz")
+# Password "hash"
 def hash_password(password):
     return password + "xyz"
 
@@ -36,20 +37,25 @@ def signup():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        confirm_password = request.form.get("confirm-password") 
         
-        if not username or not password:
-            return "Need username and password!", 400
-            
+        if not username or not password or not confirm_password:
+            return "All fields are required!"
+        
+        if password != confirm_password:
+            return "Passwords do not match!"
+        
         users = read_users()
         for user in users:
             if user["username"] == username:
-                return "Username taken!", 400
-                
+                return "Username taken!"
+        
         users.append({"username": username, "password": hash_password(password)})
         save_users(users)
         return '<meta http-equiv="refresh" content="0; url=/login" />'
     
     return get_html("signup")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -58,27 +64,26 @@ def login():
         password = request.form.get("password")
         
         if not username or not password:
-            return "Need username and password!", 400
+            return "Need username and password!"
             
         users = read_users()
         for user in users:
             if user["username"] == username and user["password"] == hash_password(password):
-                return '<meta http-equiv="refresh" content="0; url=/dashboard" />', 200, {"Set-Cookie": f"username={username}"}
+                session["username"] = username
+                return '<meta http-equiv="refresh" content="0; url=/dashboard" />'
                 
-        return "Wrong username or password!", 401
+        return "Wrong username or password!"
     
     return get_html("login")
 
 @app.route("/dashboard")
-def dashboard():
-    username = request.cookies.get("username")
-    if not username:
-        return '<meta http-equiv="refresh" content="0; url=/login" />'
+def dashboard():      
+    username = session.get("username")
         
     html = get_html("dashboard")    
     
-    transactions = recent_transactions()
-    summary = get_summary()
+    transactions = recent_transactions(username)
+    summary = get_summary(username)
     
     # Build transactions HTML
     transactions_html = ""
@@ -86,15 +91,14 @@ def dashboard():
         transactions_html += f"""
         <tr>
             <td>{t.t_type}</td>
-            <td>{t.amount}</td>
+            <td>${t.amount}</td>
             <td>{t.category}</td>
             <td>{t.formatted_date()}</td>
-            <td>{t.note}</td>
+            <td>{t.note if t.note else "—"}</td>
         </tr>
         """
     
     # Replace placeholders
-    html = html.replace("{{username}}", username)
     html = html.replace("{{transactions}}", transactions_html)
     html = html.replace("{{total_income}}", str(round(summary['income'], 2)))
     html = html.replace("{{total_expense}}", str(round(summary['expense'], 2)))
@@ -116,15 +120,17 @@ def add():
     note = request.form.get("note", "")  
 
     if not amount or not t_type or not category:
-        return "Missing required fields", 400
+        return "Missing required fields"
 
     # Convert amount to float
     try:
         amount = float(amount)
     except ValueError:
-        return "Invalid amount", 400
+        return "Invalid amount"
+    
+    username = session.get("username")
 
-    add_transaction(amount, t_type, category, note)
+    add_transaction(username, amount, t_type, category, note)
 
     # Redirect back to dashboard after adding
     return redirect("/dashboard")
@@ -142,25 +148,20 @@ def expenses():
 
 
 
-@app.route("/incomes")
-def incomes():
+@app.route("/income")
+def income():
     filter_type = request.args.get("filter", "week")
     transactions = load_transaction()
-    incomes_html = render_grouped_transactions(transactions, "income", filter_type)
-    html = get_html("incomes")
-    html = html.replace("{{incomes}}", incomes_html)
+    income_html = render_grouped_transactions(transactions, "income", filter_type)
+    html = get_html("income")
+    html = html.replace("{{income}}", income_html)
     return html
 
 
 @app.route("/logout")
 def logout():
-    return '<meta http-equiv="refresh" content="0; url=/login" />', 200, {"Set-Cookie": "username=; Expires=Thu, 01 Jan 1970 00:00:00 GMT"}
+    session.clear()
+    return redirect("/login")
 
 if __name__ == "__main__":
-    try:
-        with open(USER_FILE, "x") as file:
-            json.dump([], file)
-    except:
-        pass
-        
-    app.run(debug=True)
+        app.run(debug=True)

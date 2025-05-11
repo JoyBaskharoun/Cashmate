@@ -1,51 +1,19 @@
 [
     {
-        "amount": 1.0,
+        "username": "Sanaa",
+        "amount": 200.0,
         "t_type": "income",
-        "category": "Other",
-        "timestamp": "2025-05-08T11:34:01.095241",
-        "note": "j"
-    },
-    {
-        "amount": 1.0,
-        "t_type": "income",
-        "category": "Other",
-        "timestamp": "2024-05-08T11:34:01.095241",
-        "note": "j"
-    },
-    {
-        "amount": 1.0,
-        "t_type": "income",
-        "category": "Other",
-        "timestamp": "2025-04-08T11:34:01.095241",
-        "note": "j"
-    },
-    {
-        "amount": 1.0,
-        "t_type": "expense",
-        "category": "Transport",
-        "timestamp": "2025-05-08T13:10:01.336317",
+        "category": "Salary",
+        "timestamp": "2025-05-11T14:42:46.101377",
         "note": ""
     },
     {
-        "amount": 5.0,
-        "t_type": "income",
+        "username": "Sanaa",
+        "amount": 100.0,
+        "t_type": "expense",
         "category": "Food",
-        "timestamp": "2025-05-08T13:10:24.868162",
-        "note": "n"
-    },
-    {
-        "amount": 5.0,
-        "t_type": "expense",
-        "category": "food",
-        "timestamp": "2024-06-08T13:10:01.336317",
+        "timestamp": "2025-05-11T16:20:46.101377",
         "note": ""
-    },
-    {
-        "amount": 1.0,
-        "t_type": "expense",
-        "category": "Transport",
-        "timestamp": "2024-05-08T13:10:01.336317",
-        "note": "note"
     }
+
 ]

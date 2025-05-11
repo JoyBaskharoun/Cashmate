@@ -7,6 +7,28 @@
     <title>Expenses</title>
   </head>
   <body>
+    <nav id="main-nav">
+      <a href="/dashboard"><img src="../static/images/logo.svg" alt="logo" id="logo" /></a>
+
+      <!-- user welcome msg -->
+      <div id="welcomeUserMsg">
+        Hey <span id="user-display"></span>!
+
+        <div id="drop-down-container">
+          <img
+            src="../static/images/icons/arrow.svg"
+            alt="arrow"
+            id="drop-down-arrow"
+            class="icon"
+          />
+          <div id="drop-down-menu">
+            <p id="logout">Log out</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
     <h2>All Expenses</h2>
 
     <form method="GET" action="/expenses">
@@ -32,6 +54,7 @@
         {{expenses}}
       </tbody>
     </table>
+  </main>
   </body>
 
   <script src="/static/table.js"></script>

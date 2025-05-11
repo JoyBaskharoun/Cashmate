@@ -4,8 +4,9 @@ from datetime import datetime, timedelta
 
 # Transactions
 class Transaction:
-    def __init__(self, amount, t_type, category, timestamp, note=""):
+    def __init__(self, username, amount, t_type, category, timestamp, note=""):
         
+        self.username = username
         self.amount = float(amount)
         self.t_type = t_type
         self.category = category
@@ -15,6 +16,7 @@ class Transaction:
     # Converts the transaction to dictionary for saving to JSON
     def to_dict(self):
         return {
+            "username": self.username,
             "amount": self.amount,
             "t_type": self.t_type,
             "category": self.category,
@@ -42,11 +44,12 @@ def load_transaction():
             # Convert dicts to Transaction objects
             return [
                 Transaction(
+                    item["username"],
                     item["amount"],
                     item["t_type"],
                     item["category"],
                     item["timestamp"],
-                    item.get("note", "")  # default to empty string if "note" is missing
+                    item.get("note", "") 
                 )
                 for item in data
             ]
@@ -61,13 +64,15 @@ def save_transaction(transactions):
         
 
 # Create and save new transaction
-def add_transaction(amount, t_type, category, note=""):
+def add_transaction(username, amount, t_type, category, note=""):
     timestamp = datetime.now().isoformat()
-    new_transaction = Transaction(amount=amount,
+    new_transaction = Transaction(
+        username=username,
+        amount=amount,
         t_type=t_type,
         category=category,
         timestamp=timestamp,
-        note=note
+        note=note,
     )
     
     transactions = load_transaction()
@@ -76,13 +81,15 @@ def add_transaction(amount, t_type, category, note=""):
     
     
 # Calculate Total income/expense, and balance
-def get_summary():
+def get_summary(username):
     transactions = load_transaction()
+    
+    user_transactions = [t for t in transactions if t.username == username]
     
     total_income = 0
     total_expense = 0
     
-    for t in transactions:
+    for t in user_transactions:
         if t.is_income():
             total_income += t.amount
         else:
@@ -98,19 +105,21 @@ def get_summary():
     
 
 # Recent transactions
-def recent_transactions(limit=10):
+def recent_transactions(username, limit=10):
     transactions = load_transaction()
     
+    user_transactions = [t for t in transactions if t.username == username]
+    
     # sort by timestamp
-    for i in range(len(transactions)):
-        for j in range(i + 1, len(transactions)):
-            if transactions[i].timestamp < transactions[j].timestamp:
+    for i in range(len(user_transactions)):
+        for j in range(i + 1, len(user_transactions)):
+            if user_transactions[i].timestamp < user_transactions[j].timestamp:
                 # swap if j is more recent than i
-                transactions[i], transactions[j] = transactions[j], transactions[i]
+                user_transactions[i], user_transactions[j] = user_transactions[j], user_transactions[i]
                 
     recent = []
     count = 0
-    for t in transactions:
+    for t in user_transactions:
         if count >= limit:
             break
         recent.append(t)
@@ -146,9 +155,13 @@ def filter_transactions_by_date(transactions, filter_type):
     return filtered
 
 
-def render_grouped_transactions(transactions, t_type_filter, filter_type):
+def render_grouped_transactions(username, t_type_filter, filter_type):
+    transactions = load_transaction()
+    
+    user_transactions = [t for t in transactions if t.username == username]
+    
     # Filter by type (expense or income)
-    filtered_type = [t for t in transactions if t.t_type.lower() == t_type_filter.lower()]
+    filtered_type = [t for t in user_transactions if t.t_type.lower() == t_type_filter.lower()]
     
     # Filter by date range
     filtered = filter_transactions_by_date(filtered_type, filter_type)

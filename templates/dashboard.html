@@ -5,42 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/dashboard.css" />
   </head>
   <body>
     <nav id="main-nav">
-      <img src="../static/images/logo.svg" alt="logo" id="logo" />
-      <p id="welcomeUserMsg">Hey {{username}}!</p>
+      <a href="/dashboard"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
+
+      <!-- user welcome msg -->
+      <div id="welcomeUserMsg">
+        Hey <span id="user-display"></span>!
+
+        <div id="drop-down-container">
+          <img
+            src="../static/images/icons/arrow.svg"
+            alt="arrow"
+            id="drop-down-arrow"
+            class="icon"
+          />
+          <div id="drop-down-menu">
+            <p id="logout">Log out</p>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <main>
-      <a href="/add" id="add-transaction"> Add transaction</a> <br />
-      <a href="/expenses" id="all-expenses"> All expenses</a>
-      <a href="/incomes" id="all-incomes"> All incomes</a>
-
-      <h2>Summary</h2>
-      <div id="summary">
-        <p>Total Income: $<span id="income">{{total_income}}</span></p>
-        <p>Total Expenses: $<span id="expense">{{total_expense}}</span></p>
-        <p>Balance: $<span id="balance">{{balance}}</span></p>
+      <!-- add transaction btn -->
+      <div id="add-transaction-container">
+        <img
+          src="../static/images/dashboard-add.svg"
+          alt=""
+          id="add-transaction-img"
+        />
+        <a href="/add" id="add-transaction-btn">
+          <button class="primary-button">Add transaction</button></a
+        >
+        <br />
       </div>
 
-      <section>
-        <h2>Recent Transactions</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody id="transaction-table">
-            {{transactions}}
-          </tbody>
-        </table>
+      <section id="dashboard-body">
+        <section id="summary-section" class="dashboard-main-section">
+          <div class="dashboard-table-header">
+            <img src="../static/images/icons/summary.svg" alt="icon" />
+            <h3>Summary</h3>
+          </div>
+          <div id="summary" class="dashboard-sub">
+            <p class="summary-p">
+              Current Balance: <span id="balance">${{balance}}</span>
+            </p>
+
+            <div class="summary-p summary-link" id="all-income">
+              <p>Total Income: <span id="income">${{total_income}}</span></p>
+              <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
+            </div>
+
+            <div class="summary-p summary-link">
+              <p>
+                Total Expenses: <span id="all-expenses">${{total_expense}}</span>
+              </p>
+              <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
+            </div>
+          </div>
+        </section>
+
+        <section id="recent-transaction-section" class="dashboard-main-section">
+          <div class="dashboard-table-header">
+            <img src="../static/images/icons/recent.svg" alt="icon" />
+            <h3>Recent Transactions</h3>
+          </div>
+          <div class="dashboard-sub">
+            <table id="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Amount</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody id="transaction-table">
+                {{transactions}}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </section>
     </main>
+
+    <script>
+      const username = localStorage.getItem("username");
+      if (username) {
+        document.getElementById("user-display").textContent = username;
+      } else {
+        // redirect to login if not logged in
+        window.location.href = "/login";
+      }
+
+      document.getElementById("logout").addEventListener("click", function () {
+        // localStorage.removeItem("username");
+
+        localStorage.clear();
+        window.location.href = "/";
+      });
+
+      const allIncome = document.getElementById("all-income");
+      const allExpenses = document.getElementById("all-expenses");
+
+      allIncome.addEventListener("click", function () {
+        window.location.href = "/income";
+      });
+
+      allExpenses.addEventListener("click", function () {
+        window.location.href = "/expenses";
+      });
+    </script>
+
+    <script src="../static/script.js"></script>
   </body>
 </html>

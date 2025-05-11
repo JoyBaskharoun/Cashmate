@@ -7,11 +7,7 @@
     <title>Login</title>
   </head>
   <body>
-    <nav id="main-nav">
-      <a href="/"
-        ><img src="../static/images/logo.svg" alt="logo" id="logo"
-      /></a>
-    </nav>
+    /
 
     <main class="main-centered">
       <form method="post" action="/login" class="login-form-container">
@@ -44,7 +40,7 @@
           </div>
 
           <button type="submit" class="primary-button" style="width: 100%">
-            Sign In
+            Log In
           </button>
           <div class="signup-link">
             Don't have an account? <a href="/signup" class="link">Sign Up</a>
@@ -52,5 +48,16 @@
         </div>
       </form>
     </main>
+
+    <script>
+      document
+        .querySelector(".login-form-container")
+        .addEventListener("submit", function (e) {
+          const username = document.querySelector(
+            'input[name="username"]'
+          ).value;
+          localStorage.setItem("username", username);
+        });
+    </script>
   </body>
 </html>
