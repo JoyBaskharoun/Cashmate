@@ -1,19 +1,25 @@
-[
-    {
-        "username": "Sanaa",
-        "amount": 200.0,
-        "t_type": "income",
-        "category": "Salary",
-        "timestamp": "2025-05-11T14:42:46.101377",
-        "note": ""
-    },
-    {
-        "username": "Sanaa",
-        "amount": 100.0,
-        "t_type": "expense",
-        "category": "Food",
-        "timestamp": "2025-05-11T16:20:46.101377",
-        "note": ""
-    }
-
-]
+{
+    "test": [
+        {
+            "amount": 500.0,
+            "t_type": "income",
+            "category": "Food",
+            "timestamp": "2025-05-12T11:50:23.963322",
+            "note": ""
+        },
+        {
+            "amount": 92.0,
+            "t_type": "expense",
+            "category": "Transport",
+            "timestamp": "2025-05-12T11:50:49.408140",
+            "note": ""
+        },
+        {
+            "amount": 100.0,
+            "t_type": "expense",
+            "category": "Bills",
+            "timestamp": "2025-05-12T14:03:42.945994",
+            "note": "note"
+        }
+    ]
+}

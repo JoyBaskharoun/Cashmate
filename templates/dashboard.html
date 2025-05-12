@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../static/style.css" />
-    <link rel="stylesheet" href="../static/dashboard.css" />
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/dashboard.css" />
   </head>
   <body>
     <nav id="main-nav">
@@ -61,9 +61,10 @@
               <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
             </div>
 
-            <div class="summary-p summary-link">
+            <div class="summary-p summary-link" style="border: none">
               <p>
-                Total Expenses: <span id="all-expenses">${{total_expense}}</span>
+                Total Expenses:
+                <span id="all-expenses">${{total_expense}}</span>
               </p>
               <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
             </div>
@@ -96,21 +97,6 @@
     </main>
 
     <script>
-      const username = localStorage.getItem("username");
-      if (username) {
-        document.getElementById("user-display").textContent = username;
-      } else {
-        // redirect to login if not logged in
-        window.location.href = "/login";
-      }
-
-      document.getElementById("logout").addEventListener("click", function () {
-        // localStorage.removeItem("username");
-
-        localStorage.clear();
-        window.location.href = "/";
-      });
-
       const allIncome = document.getElementById("all-income");
       const allExpenses = document.getElementById("all-expenses");
 
@@ -121,8 +107,9 @@
       allExpenses.addEventListener("click", function () {
         window.location.href = "/expenses";
       });
+
     </script>
 
-    <script src="../static/script.js"></script>
+    <script src="../static/script/usrname.js"></script>
   </body>
 </html>

@@ -3,16 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/login.css" />
   </head>
   <body>
-    <h2>Sign Up</h2>
-    <form method="post" action="/signup">
-      <input type="text" name="username" placeholder="First Name" /><br />
-      <input type="password" name="password" placeholder="Password" required /><br />
-      <input type="password" name="confirm-password" placeholder="Confirm Password" required /><br />
-      <button type="submit">Sign Up</button>
-    </form>
-    <a href="/login">Already have an account? Login</a>
+    <main class="main-centered">
+      <form method="post" action="/signup" class="login-form-container">
+        <div>
+          <img
+            src="../static/images/signup.svg"
+            alt="mobile login form illustration"
+            class="login-img"
+          />
+        </div>
+
+        <div class="login-form">
+          <h3>Create an account easily</h3>
+          <div class="input-fields-container" style="gap: 4px">
+            <input
+              type="text"
+              name="username"
+              placeholder="First Name"
+              minlength="3"
+              maxlength="20"
+              pattern="^[A-Za-z0-9_]+$"
+              title="Username should be 3–20 characters, letters, numbers, or underscores only."
+            /><br />
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              minlength="6"
+              maxlength="30"
+            /><br />
+            
+            <input
+              type="password"
+              name="confirm-password"
+              placeholder="Confirm Password"
+              required
+            /><br />
+          </div>
+          <button type="submit" class="primary-button" style="width: 100%">
+            Sign Up
+          </button>
+          <p>
+            Already have an account?
+            <span><a href="/login" class="link">Login</a></span>
+          </p>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

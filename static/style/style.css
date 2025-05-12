@@ -5,8 +5,10 @@
   /* colors */
   --primary: rgba(46, 31, 71, 1);
   --accent: rgba(231, 109, 109, 1);
+  --accent-dark: rgb(226, 88, 88);
   --secondary: rgba(235, 221, 203, 1);
   --secondary-50: rgba(235, 221, 203, 0.5);
+  --secondary-dark: rgba(235, 225, 205);
   --background: rgba(253, 249, 243, 1);
   --positive-signal: rgba(217, 232, 164, 1);
   --negative-signal: rgba(141, 74, 86, 1);
@@ -22,7 +24,10 @@
   /* fonts */
   --main-font: "IBM Plex Sans", sans-serif;
   --accent-font: "Space Grotesk", sans-serif;
-  --text-body-size: 18px;
+  --text-body-size: 16px;
+
+  /* shadows */
+  --main-shadow: 1px 1px 8px rgba(42, 42, 42, .2)
 }
 
 * {
@@ -96,7 +101,7 @@ button {
 
 .primary-button {
   background: var(--accent);
-  color: var(--background);
+  color: var(--white);
 }
 
 .secondary-button {
@@ -107,6 +112,13 @@ button {
   width: 16px;
 }
 
+.main-centered {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* inputs */
 input {
   border: none;
@@ -115,7 +127,28 @@ input {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
   padding: 12px 14px;
   width: 100%;
+  font-size: inherit;
 }
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 
 /* Navbar */
 #main-nav {
@@ -168,79 +201,6 @@ main {
   padding: var(--main-padding);
 }
 
-/* home */
-.main-centered {
-  height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* hero section */
-#hero-section-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#hero-img {
-  width: 13em;
-}
-
-#hero-h1 {
-  font-size: 48px;
-  color: var(--primary);
-}
-
-#hero-section-container div {
-  margin: 24px 0;
-}
-
-#sign-options-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-}
-
-/* login */
-.login-form-container {
-  display: flex;
-  padding: 40px 80px;
-  align-items: center;
-  gap: 80px;
-  height: fit-content;
-
-  border-radius: 24px;
-  background: var(--secondary);
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.login-img {
-  width: 280px;
-}
-
-.input-fields-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 10px;
-  align-self: stretch;
-
-  width: 280px;
-}
-
-
-
 /* Collapsible Tables   */
 tr.collapsible {
   cursor: pointer;
@@ -260,4 +220,20 @@ tr.content {
 .inner-table td {
   border: 1px solid #ddd;
   padding: 4px;
+}
+
+
+
+/* hover effects */
+.primary-button:hover{
+  background-color: var(--accent-dark);
+}
+
+.secondary-button:hover {
+  color: var(--accent-dark);
+  background-color: var(--white-50);
+}
+
+button:hover{
+  border: 2px solid var(--accent-dark);
 }

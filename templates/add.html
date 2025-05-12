@@ -1,35 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add transaction</title>
-    <link rel="stylesheet" href="../static/style.css" />
-</head>
-<body>
-    
-     <!-- 📝 Add Transaction Form -->
-  <section>
-    <h2>Add Transaction</h2>
-    <form action="/add" method="POST" id="transaction-form">
-      <input type="number" name="amount" placeholder="Amount" required>
-      <select name="type" required>
-        <option value="" disabled selected>Select Type</option>
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <select name="category" required>
-        <option value="" disabled selected>Select Category</option>
-        <option value="Food">Food</option>
-        <option value="Transport">Transport</option>
-        <option value="Salary">Salary</option>
-        <option value="Other">Other</option>
-      </select>
-      <input type="text" name="note" placeholder="Note (optional)">
-      <button type="submit">Add</button>
-    </form>
-    <!-- 📊 Summary Section -->
-  <section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Transaction</title>
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/add.css" />
+  </head>
+  <body>
+    <main>
+      <nav id="main-nav">
+        <a href="/dashboard"
+          ><img src="../static/images/logo.svg" alt="logo" id="logo"
+        /></a>
 
-</body>
+        <!-- user welcome msg -->
+        <div id="welcomeUserMsg">
+          Hey <span id="user-display"></span>!
+
+          <div id="drop-down-container">
+            <img
+              src="../static/images/icons/arrow.svg"
+              alt="arrow"
+              id="drop-down-arrow"
+              class="icon"
+            />
+            <div id="drop-down-menu">
+              <p id="logout">Log out</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- add Transaction Form -->
+      <section>
+        <h2>Add Transaction</h2>
+
+        <form action="/add" method="POST" id="transaction-form">
+          <!-- type selector -->
+          <div class="type-selector">
+            <label style="font-weight: 500">Select Type</label>
+
+            <div class="input-container">
+              <input
+                type="radio"
+                id="income"
+                name="type"
+                value="income"
+                required
+              />
+              <label for="income" class="type-box">Income</label>
+
+              <input
+                type="radio"
+                id="expense"
+                name="type"
+                value="expense"
+                required
+              />
+              <label for="expense" class="type-box">Expense</label>
+            </div>
+          </div>
+
+          <!-- categories -->
+          <select name="category" id="category-select" required disabled>
+            <option value="" disabled selected>Select Category</option>
+          </select>
+
+          <!-- amount -->
+          <input type="number" name="amount" placeholder="Amount" required />
+
+          <!-- note -->
+          <input type="text" name="note" placeholder="Note (optional)" />
+
+          <button type="submit" class="primary-button">Add</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const categorySelect = document.getElementById("category-select");
+      const typeRadios = document.querySelectorAll("input[name='type']");
+
+      const categories = {
+        income: ["Salary", "Freelance", "Investment", "Gifts", "Other"],
+        expense: ["Food", "Transport", "Bills", "Gifts", "Car", "Other"],
+      };
+
+      typeRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          const selectedType = radio.value;
+
+          categorySelect.disabled = false;
+
+          // Clear previous options
+          categorySelect.innerHTML =
+            '<option value="" disabled selected>Select Category</option>';
+
+          // Add relevant options
+          categories[selectedType].forEach((cat) => {
+            const option = document.createElement("option");
+            option.value = cat;
+            option.textContent = cat;
+            categorySelect.appendChild(option);
+          });
+        });
+      });
+    </script>
+
+    <script src="../static/script/usrname.js"></script>
+  </body>
 </html>

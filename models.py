@@ -41,26 +41,39 @@ def load_transaction():
     try:
         with open(TRANSACTIONS_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-            # Convert dicts to Transaction objects
-            return [
-                Transaction(
-                    item["username"],
-                    item["amount"],
-                    item["t_type"],
-                    item["category"],
-                    item["timestamp"],
-                    item.get("note", "") 
-                )
-                for item in data
-            ]
+            transactions = []
+            for username, items in data.items():
+                for item in items:
+                    transactions.append(Transaction(
+                        username,
+                        item["amount"],
+                        item["t_type"],
+                        item["category"],
+                        item["timestamp"],
+                        item.get("note", "")
+                    ))
+            return transactions
     except:
         return []
 
 
+
 # Save list of Transaction objects to the JSON file.
 def save_transaction(transactions):
+    grouped = {}
+    for t in transactions:
+        if t.username not in grouped:
+            grouped[t.username] = []
+        grouped[t.username].append({
+            "amount": t.amount,
+            "t_type": t.t_type,
+            "category": t.category,
+            "timestamp": t.timestamp,
+            "note": t.note
+        })
+
     with open(TRANSACTIONS_FILE, "w", encoding="utf-8") as f:
-        json.dump([t.to_dict() for t in transactions], f, indent=4)
+        json.dump(grouped, f, indent=4)
         
 
 # Create and save new transaction

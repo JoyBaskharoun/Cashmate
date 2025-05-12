@@ -3,39 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/home.css" />
     <title>CashMate</title>
   </head>
   <body>
     <nav id="main-nav">
-      <a href="/"><img src="../static/images/logo.svg" alt="logo" id="logo" /></a>
+      <a href="/"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
     </nav>
-    
-    <main class="main-centered">
+
+    <main class="">
       <section id="hero-section-container">
+        <div class="right-side-container">
+          <h1 id="hero-h1">Track <i>smarter</i>, Spend <span>better</span>.</h1>
+          <div>
+            <!-- <h3>Stay on top of your finances effortlessly with CashMate.</h3> -->
+            <p style="font-size: 18px;">
+              Track your income and spending, filter by category or date, and
+              view instant summaries. All in a clean, distraction-free space.
+            </p>
+          </div>
+
+          <section id="sign-options-container">
+            <button class="primary-button"><a href="/login">Log In</a></button>
+            <button class="secondary-button">
+              <a href="/signup">Sign Up</a>
+            </button>
+          </section>
+        </div>
+
         <img
           src="../static/images/home.svg"
           alt="dashboard illustration"
           id="hero-img"
         />
+      </section>
 
-        <h1 id="hero-h1">Track smarter, Spend better.</h1>
-
-        <div>
-          <h3>Stay on top of your finances effortlessly with CashMate.</h3>
+      <section id="services">
+        <div class="card">
+          <img src="../static/images/folder.svg" alt="folder icon" />
+          <h3>Track Spending</h3>
           <p>
             Track your income and spending, filter by category or date, and view
-            instant summaries.
+            instant
           </p>
-          <p>All in a clean, distraction-free space.</p>
         </div>
 
-        <section id="sign-options-container">
-          <button class="primary-button"><a href="/login">Log In</a></button>
-          <button class="secondary-button">
-            <a href="/signup">Sign Up</a>
-          </button>
-        </section>
+        <div class="card">
+          <img src="../static/images/clock.svg" alt="folder icon" />
+          <h3>Track Spending</h3>
+          <p>
+            Track your income and spending, filter by category or date, and view
+            instant
+          </p>
+        </div>
+
+        <div class="card">
+          <img src="../static/images/alarm.svg" alt="folder icon" />
+          <h3>Track Spending</h3>
+          <p>
+            Track your income and spending, filter by category or date, and view
+            instant
+          </p>
+        </div>
       </section>
     </main>
 

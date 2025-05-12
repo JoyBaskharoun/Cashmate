@@ -1,0 +1,100 @@
+@import url(style.css);
+
+/* Dashboard */
+#add-transaction-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  margin: 40px;
+}
+
+#dashboard-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dashboard-table-header {
+  display: flex;
+  gap: 4px;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px var(--accent) solid;
+}
+
+.dashboard-main-section {
+  background-color: var(--secondary);
+  padding: 24px;
+  border-radius: 16px;
+}
+
+#summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summary-p {
+  padding-bottom: 8px;
+  border-bottom: 1px var(--white) solid;
+}
+
+.summary-link {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.summary-link img {
+  rotate: -90deg;
+}
+
+.summary-p span {
+  margin-top: 8px;
+  display: block;
+}
+
+#summary-section {
+  width: 70%;
+}
+
+#recent-transaction-section {
+  width: 100%;
+}
+
+.dashboard-sub {
+  overflow-y: scroll;
+}
+
+#dashboard-table {
+  width: 100%;
+}
+
+#dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#dashboard-table tbody {
+  overflow-y: auto;
+}
+
+#dashboard-table th,
+#dashboard-table td {
+  padding: 0.75rem;
+  text-align: left;
+  width: 20%;
+  text-overflow: clip;
+}
+
+tr {
+  border-radius: 8px;
+}
+
+tbody tr:hover {
+  background-color: var(--white-50);
+}
