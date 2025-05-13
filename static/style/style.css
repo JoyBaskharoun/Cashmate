@@ -196,33 +196,19 @@ input[type=number] {
   cursor: pointer;
 }
 
+select{
+  font-family: inherit;
+  font-weight: 500;
+}
+
+select option{
+  font-weight: normal;
+}
+
 /* Main tag */
 main {
   padding: var(--main-padding);
 }
-
-/* Collapsible Tables   */
-tr.collapsible {
-  cursor: pointer;
-  background-color: #f9f9f9;
-}
-
-tr.content {
-  background-color: #f1f1f1;
-}
-
-.inner-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.inner-table th,
-.inner-table td {
-  border: 1px solid #ddd;
-  padding: 4px;
-}
-
-
 
 /* hover effects */
 .primary-button:hover{

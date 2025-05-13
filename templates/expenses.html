@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/style/style.css">
+    <link rel="stylesheet" href="../static/style/income.css">
     <title>Expenses</title>
   </head>
   <body>
@@ -32,7 +33,7 @@
     <h2>All Expenses</h2>
 
     <form method="GET" action="/expenses">
-      <label for="filter">Filter by:</label>
+      <!-- <label for="filter">Filter by:</label> -->
       <select name="filter" id="filter">
         <option value="day">Day</option>
         <option value="week" selected>Week</option>
@@ -44,10 +45,10 @@
     </form>
 
     <table>
-      <thead>
+      <thead class="thead">
         <tr>
           <th>Category</th>
-          <th>Total</th>
+          <th class="total">Total</th>
         </tr>
       </thead>
       <tbody id="expenses-table">
@@ -55,7 +56,18 @@
       </tbody>
     </table>
   </main>
+
+  <script src="../static/script/usrname.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedFilter = urlParams.get("filter");
+
+      if (selectedFilter) {
+        const filterSelect = document.getElementById("filter");
+        filterSelect.value = selectedFilter;
+      }
+    </script>
   </body>
 
-  <script src="/static/table.js"></script>
+  <script src="../static/script/table.js"></script>
 </html>

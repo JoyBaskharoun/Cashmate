@@ -40,6 +40,12 @@
 .summary-p {
   padding-bottom: 8px;
   border-bottom: 1px var(--white) solid;
+  font-weight: bold;
+}
+
+.summary-p span{
+  font-weight: normal;
+  font-size: 18px;
 }
 
 .summary-link {

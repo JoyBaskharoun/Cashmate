@@ -1,1 +1,93 @@
 @import url(style.css);
+
+h2 {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Filter form */
+form {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+  max-width: 200px;
+}
+
+form div{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label{
+  font-weight: 500;
+}
+
+select {
+  background-color: var(--secondary);
+  font-size: inherit;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+select option{
+  background-color: var(--white);
+}
+
+button {
+  background-color: var(--primary);
+  color: var(--white);
+  border: var(--primary);
+  cursor: pointer;
+}
+
+button:hover {
+  border: var(--primary);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--white-50);
+  box-shadow: var(--main-shadow);
+}
+
+.thead {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.total,
+.actions {
+  width: 0px;
+}
+
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+}
+
+.icons-container{
+  display: flex;
+  gap: 8px;
+  justify-content: end;
+}
+
+.bold-td {
+  font-weight: bold;
+}
+
+.action-icon {
+  cursor: pointer;
+}

@@ -1,8 +1,8 @@
 {
     "test": [
         {
-            "amount": 500.0,
-            "t_type": "income",
+            "amount": 50.0,
+            "t_type": "expense",
             "category": "Food",
             "timestamp": "2025-05-12T11:50:23.963322",
             "note": ""
@@ -11,14 +11,86 @@
             "amount": 92.0,
             "t_type": "expense",
             "category": "Transport",
-            "timestamp": "2025-05-12T11:50:49.408140",
+            "timestamp": "2025-04-12T11:50:49.408140",
             "note": ""
         },
         {
             "amount": 100.0,
             "t_type": "expense",
             "category": "Bills",
-            "timestamp": "2025-05-12T14:03:42.945994",
+            "timestamp": "2025-04-12T14:03:42.945994",
+            "note": "note"
+        },
+        {
+            "amount": 100.0,
+            "t_type": "expense",
+            "category": "Bills",
+            "timestamp": "2024-05-12T14:03:42.945994",
+            "note": "note"
+        },
+        {
+            "amount": 500.0,
+            "t_type": "income",
+            "category": "Salary",
+            "timestamp": "2025-05-12T11:50:23.963322",
+            "note": ""
+        },
+        {
+            "amount": 100.0,
+            "t_type": "income",
+            "category": "Freelance",
+            "timestamp": "2025-04-12T14:03:42.945994",
+            "note": "note"
+        },
+        {
+            "amount": 100.0,
+            "t_type": "income",
+            "category": "Freelance",
+            "timestamp": "2024-05-12T14:03:42.945994",
+            "note": "note"
+        }
+    ],
+    "dina": [
+        {
+            "amount": 500.0,
+            "t_type": "income",
+            "category": "Freelance",
+            "timestamp": "2025-05-13T09:26:59.551155",
+            "note": ""
+        },
+        {
+            "amount": 200.0,
+            "t_type": "income",
+            "category": "Salary",
+            "timestamp": "2025-05-10T09:26:59.551155",
+            "note": ""
+        },
+        {
+            "amount": 50.0,
+            "t_type": "income",
+            "category": "Salary",
+            "timestamp": "2025-04-13T09:26:59.551155",
+            "note": ""
+        },
+        {
+            "amount": 15.0,
+            "t_type": "expense",
+            "category": "Food",
+            "timestamp": "2025-05-13T09:53:29.350428",
+            "note": "note"
+        },
+        {
+            "amount": 30.0,
+            "t_type": "expense",
+            "category": "Food",
+            "timestamp": "2025-05-13T09:53:29.350428",
+            "note": "note"
+        },
+        {
+            "amount": 22.0,
+            "t_type": "expense",
+            "category": "Bills",
+            "timestamp": "2025-05-13T09:53:29.350428",
             "note": "note"
         }
     ]

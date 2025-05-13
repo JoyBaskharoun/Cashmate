@@ -1,40 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style/style.css">
-    <link rel="stylesheet" href="../static/style/income.css">
-    <title>Incomes</title>
-</head>
-<body>
-    <h2>All Incomes</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/income.css" />
+    <title>Income</title>
+  </head>
+  <body>
+    <nav id="main-nav">
+      <a href="/dashboard"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
 
-    <form method="GET" action="/incomes">
-      <label for="filter">Filter by:</label>
-      <select name="filter" id="filter">
-        <option value="day">Day</option>
-        <option value="week" selected>Week</option>
-        <option value="month">Month</option>
-        <option value="year">Year</option>
-        <option value="all-time">All time</option>
-      </select>
-      <button type="submit">Apply</button>
-    </form>
+      <!-- user welcome msg -->
+      <div id="welcomeUserMsg">
+        Hey <span id="user-display"></span>!
 
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="incomes-table">
-      {{incomes}}
-      </tbody>
-    </table>
+        <div id="drop-down-container">
+          <img
+            src="../static/images/icons/arrow.svg"
+            alt="arrow"
+            id="drop-down-arrow"
+            class="icon"
+          />
+          <div id="drop-down-menu">
+            <p id="logout">Log out</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <h2>All Incomes</h2>
+
+      <form method="GET" action="/income">
+        <!-- <label for="filter">Filter by:</label> -->
+        <select name="filter" id="filter">
+          <option value="day">Day</option>
+          <option value="week">Week</option>
+          <option value="month">Month</option>
+          <option value="year">Year</option>
+          <option value="all-time">All time</option>
+        </select>
+
+        <button type="submit">Apply</button>
+      </form>
+
+      <table>
+        <thead class="thead">
+          <tr>
+            <th>Category</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody id="incomes-table">
+          {{income}}
+        </tbody>
+      </table>
+    </main>
+
+    <script src="../static/script/usrname.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedFilter = urlParams.get("filter");
+
+      if (selectedFilter) {
+        const filterSelect = document.getElementById("filter");
+        filterSelect.value = selectedFilter;
+      }
+    </script>
   </body>
-
-  <script src="/static/table.js"></script>
-</body>
 </html>
