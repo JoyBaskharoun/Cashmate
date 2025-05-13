@@ -1,6 +1,7 @@
 {
     "test": [
         {
+            "username": "test",
             "amount": 50.0,
             "t_type": "expense",
             "category": "Food",
@@ -8,6 +9,7 @@
             "note": ""
         },
         {
+            "username": "test",
             "amount": 92.0,
             "t_type": "expense",
             "category": "Transport",
@@ -15,6 +17,7 @@
             "note": ""
         },
         {
+            "username": "test",
             "amount": 100.0,
             "t_type": "expense",
             "category": "Bills",
@@ -22,6 +25,7 @@
             "note": "note"
         },
         {
+            "username": "test",
             "amount": 100.0,
             "t_type": "expense",
             "category": "Bills",
@@ -29,6 +33,7 @@
             "note": "note"
         },
         {
+            "username": "test",
             "amount": 500.0,
             "t_type": "income",
             "category": "Salary",
@@ -36,6 +41,7 @@
             "note": ""
         },
         {
+            "username": "test",
             "amount": 100.0,
             "t_type": "income",
             "category": "Freelance",
@@ -43,6 +49,7 @@
             "note": "note"
         },
         {
+            "username": "test",
             "amount": 100.0,
             "t_type": "income",
             "category": "Freelance",
@@ -52,13 +59,15 @@
     ],
     "dina": [
         {
-            "amount": 500.0,
+            "username": "dina",
+            "amount": 50.0,
             "t_type": "income",
             "category": "Freelance",
-            "timestamp": "2025-05-13T09:26:59.551155",
-            "note": ""
+            "timestamp": "2025-05-10T09:26:59.551155",
+            "note": "note"
         },
         {
+            "username": "dina",
             "amount": 200.0,
             "t_type": "income",
             "category": "Salary",
@@ -66,6 +75,7 @@
             "note": ""
         },
         {
+            "username": "dina",
             "amount": 50.0,
             "t_type": "income",
             "category": "Salary",
@@ -73,6 +83,7 @@
             "note": ""
         },
         {
+            "username": "dina",
             "amount": 15.0,
             "t_type": "expense",
             "category": "Food",
@@ -80,6 +91,7 @@
             "note": "note"
         },
         {
+            "username": "dina",
             "amount": 30.0,
             "t_type": "expense",
             "category": "Food",
@@ -87,6 +99,7 @@
             "note": "note"
         },
         {
+            "username": "dina",
             "amount": 22.0,
             "t_type": "expense",
             "category": "Bills",

@@ -41,16 +41,17 @@ def render_grouped_transactions(username, t_type_filter, filter_type):
         """
         for t in txns:
             html_rows += f"""
-                        <tr>
-                            <td>${t.amount:.2f}</td>
-                            <td>{t.formatted_date()}</td>
-                            <td>{t.note if t.note else "—"}</td>
-                            <td class="icons-container">
-                                <img src="/static/images/icons/edit.svg" alt="Edit" class="action-icon" title="Edit">
-                                <img src="/static/images/icons/bin.svg" alt="Delete" class="action-icon" title="Delete">
-                            </td>
-                        </tr>
+            <tr data-id="{t.timestamp}">
+                <td class="amount-cell">${t.amount:.2f}</td>
+                <td class="date-cell">{t.formatted_date()}</td>
+                <td class="note-cell">{t.note if t.note else "—"}</td>                    
+                <td class="icons-container">
+                    <img src="/static/images/icons/edit.svg" alt="Edit" class="action-icon edit-btn" title="Edit">
+                    <img src="/static/images/icons/bin.svg" alt="Delete" class="action-icon delete-btn" title="Delete">
+                </td>
+            </tr>
             """
+
         html_rows += """
                     </tbody>
                 </table>

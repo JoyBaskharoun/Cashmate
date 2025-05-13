@@ -26,6 +26,7 @@ select {
   border-radius: 8px;
   font-size: inherit;
   background-color: var(--white-50);
+  font-weight: 500;
 }
 
 .type-selector {
@@ -52,7 +53,7 @@ input[type="radio"] {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  color: var(--primary);
+  font-weight: 500;
 }
 
 .type-box:hover {

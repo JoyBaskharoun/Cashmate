@@ -18,22 +18,22 @@ CashMate is a personal finance tracker web app that lets users register, log in,
 - [x] It uses at least one module from the Python Standard Library other than the random module.  
   - Module name: `json`, 
 - [x] It contains at least one class written by you that has both properties and methods. It uses `__init__()` to let the class initialize the object's attributes (note that `__init__()` doesn't count as a method). This includes instantiating the class and using the methods in your app. Please provide below the file name and the line number(s) of at least one example of a class definition in your code as well as the names of two properties and two methods.  
-  - File name for the class definition: `models.py`
+  - File name for the class definition: `transactions.py`
   - Line number(s) for the class definition: `6`
-  - Name of two properties:  
+  - Name of two properties:  ``
   - Name of two methods: `is_income(), formatted_date()`
-  - File name and line numbers where the methods are used:
-- [] It makes use of JavaScript in the front end and uses the localStorage of the web browser.
+  - File name and line numbers where the methods are used: `storage.py, 29 | summary.py, 6 | filters.py, 46`
+- [x] It makes use of JavaScript in the front end and uses the localStorage of the web browser.
 - [x] It uses modern JavaScript (for example, let and const rather than var).
 - [x] It makes use of the reading and writing to the same file feature.
 - [x] It contains conditional statements.  
   Please provide below the file name and the line number(s) of at least one example of a conditional statement in your code.  
-  - File name: `models.py`
-  - Line number(s): `86, 107, 114`
+  - File name: ``
+  - Line number(s): ``
 - [x] It contains loops.  
   Please provide below the file name and the line number(s) of at least one example of a loop in your code.  
-  - File name: `models.py`
-  - Line number(s): `85, 105, 142`
+  - File name: ``
+  - Line number(s): ``
 - [x] It lets the user enter a value in a text box at some point. This value is received and processed by your back end Python code.
 - [x] It doesn't generate any error message even if the user enters a wrong input.
 - [x] It is styled using your own CSS.
