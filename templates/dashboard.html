@@ -6,6 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/dashboard.css" />
+    <link rel="stylesheet" href="../static/style/popUp.css" />
   </head>
   <body>
     <nav id="main-nav">
@@ -26,6 +27,17 @@
           />
           <div id="drop-down-menu">
             <p id="logout">Log out</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom confirmation modal -->
+      <div id="logout-modal" class="modal">
+        <div class="modal-content">
+          <p style="font-weight: 500; margin-bottom: 16px;">Are you sure you want to log out?</p>
+          <div class="" style="display: flex; justify-content: center;  gap: 8px;">
+            <button id="confirm-logout" class="secondary-button">Yes, log out</button>
+            <button id="cancel-logout" class="primary-button">Cancel</button>
           </div>
         </div>
       </div>
@@ -61,7 +73,11 @@
               <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
             </div>
 
-            <div class="summary-p summary-link" style="border: none" id="all-expenses">
+            <div
+              class="summary-p summary-link"
+              style="border: none"
+              id="all-expenses"
+            >
               <p>
                 Total Expenses:
                 <span>${{total_expense}}</span>
@@ -107,10 +123,10 @@
       allExpenses.addEventListener("click", function () {
         window.location.href = "/expenses";
       });
-
     </script>
 
     <script src="../static/script/usrname.js"></script>
     <script src="../static/script/script.js"></script>
+    <script src="../static/script/popUp.js"></script>
   </body>
 </html>

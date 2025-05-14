@@ -14,11 +14,11 @@ def filter_transactions_by_date(transactions, filter_type):
     cutoff = now - periods.get(filter_type, timedelta(weeks=1))
     return [t for t in transactions if datetime.fromisoformat(t.timestamp) >= cutoff]
 
-def render_grouped_transactions(username, t_type_filter, filter_type):
+def render_grouped_transactions(email, t_type_filter, filter_type):
     transactions = load_transaction()
     filtered_transactions = [
         t for t in transactions 
-        if t.username == username and t.t_type.lower() == t_type_filter.lower()
+        if t.email == email and t.t_type.lower() == t_type_filter.lower()
     ]
     filtered = filter_transactions_by_date(filtered_transactions, filter_type)
 

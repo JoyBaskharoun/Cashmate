@@ -1,17 +1,19 @@
 from datetime import datetime
+import uuid
 
 class Transaction:
-    def __init__(self, username, amount, t_type, category, timestamp, note=""):
-        self.username = username
+    def __init__(self, email, amount, t_type, category, timestamp, note="", id=None):
+        self.email = email
         self.amount = float(amount)
         self.t_type = t_type
         self.category = category
         self.timestamp = timestamp
         self.note = note
+        self.id = id if id else str(uuid.uuid4())
 
     def to_dict(self):
         return {
-            "username": self.username,
+            "email": self.email,
             "amount": self.amount,
             "t_type": self.t_type,
             "category": self.category,

@@ -1,14 +1,7 @@
 [
     {
-        "username": "test",
-        "password": "test123xyz"
-    },
-    {
-        "username": "Noha",
-        "password": "noha123xyz"
-    },
-    {
-        "username": "dina",
-        "password": "dina123xyz"
+        "email": "joy@mail.com",
+        "username": "Joy",
+        "password": "joy123xyz"
     }
 ]

@@ -1,110 +1,28 @@
 {
-    "test": [
+    "joy@mail.com": [
         {
-            "username": "test",
-            "amount": 50.0,
-            "t_type": "expense",
-            "category": "Food",
-            "timestamp": "2025-05-12T11:50:23.963322",
-            "note": ""
-        },
-        {
-            "username": "test",
-            "amount": 92.0,
-            "t_type": "expense",
-            "category": "Transport",
-            "timestamp": "2025-04-12T11:50:49.408140",
-            "note": ""
-        },
-        {
-            "username": "test",
-            "amount": 100.0,
-            "t_type": "expense",
-            "category": "Bills",
-            "timestamp": "2025-04-12T14:03:42.945994",
-            "note": "note"
-        },
-        {
-            "username": "test",
-            "amount": 100.0,
-            "t_type": "expense",
-            "category": "Bills",
-            "timestamp": "2024-05-12T14:03:42.945994",
-            "note": "note"
-        },
-        {
-            "username": "test",
-            "amount": 500.0,
+            "email": "joy@mail.com",
+            "amount": 50.5,
             "t_type": "income",
             "category": "Salary",
-            "timestamp": "2025-05-12T11:50:23.963322",
-            "note": ""
+            "timestamp": "2025-05-16T10:10",
+            "note": "6"
         },
         {
-            "username": "test",
-            "amount": 100.0,
+            "email": "joy@mail.com",
+            "amount": 505.5,
             "t_type": "income",
             "category": "Freelance",
-            "timestamp": "2025-04-12T14:03:42.945994",
-            "note": "note"
+            "timestamp": "2025-05-14T15:27",
+            "note": "5"
         },
         {
-            "username": "test",
-            "amount": 100.0,
-            "t_type": "income",
-            "category": "Freelance",
-            "timestamp": "2024-05-12T14:03:42.945994",
-            "note": "note"
-        }
-    ],
-    "dina": [
-        {
-            "username": "dina",
-            "amount": 50.0,
-            "t_type": "income",
-            "category": "Freelance",
-            "timestamp": "2025-05-10T09:26:59.551155",
-            "note": "note"
-        },
-        {
-            "username": "dina",
-            "amount": 200.0,
-            "t_type": "income",
-            "category": "Salary",
-            "timestamp": "2025-05-10T09:26:59.551155",
-            "note": ""
-        },
-        {
-            "username": "dina",
-            "amount": 50.0,
-            "t_type": "income",
-            "category": "Salary",
-            "timestamp": "2025-04-13T09:26:59.551155",
-            "note": ""
-        },
-        {
-            "username": "dina",
-            "amount": 15.0,
-            "t_type": "expense",
-            "category": "Food",
-            "timestamp": "2025-05-13T09:53:29.350428",
-            "note": "note"
-        },
-        {
-            "username": "dina",
-            "amount": 30.0,
-            "t_type": "expense",
-            "category": "Food",
-            "timestamp": "2025-05-13T09:53:29.350428",
-            "note": "note"
-        },
-        {
-            "username": "dina",
-            "amount": 22.0,
+            "email": "joy@mail.com",
+            "amount": 523.0,
             "t_type": "expense",
             "category": "Bills",
-            "timestamp": "2025-05-13T09:53:29.350428",
-            "note": "note"
+            "timestamp": "2025-05-14T15:33",
+            "note": ""
         }
     ]
 }

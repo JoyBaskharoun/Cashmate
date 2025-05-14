@@ -24,7 +24,7 @@ document.querySelectorAll(".edit-btn").forEach((editBtn) => {
     const icons = row.querySelector(".icons-container");
     icons.innerHTML = `
           <img src="/static/images/icons/check.svg" class="action-icon confirm-edit" title="Confirm">
-          <img src="/static/images/icons/x.svg" class="action-icon cancel-edit" title="Cancel">
+          <img src="/static/images/icons/cancel.svg" class="action-icon cancel-edit" title="Cancel">
         `;
 
     icons.querySelector(".confirm-edit").addEventListener("click", () => {

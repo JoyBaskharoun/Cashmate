@@ -3,19 +3,23 @@ from models.storage import load_transaction, save_transaction
 
 def update_transaction():
     data = request.get_json()
-    id = data["id"]  # original timestamp
+    id = data.get("id") 
     amount = float(data["amount"])
-    new_timestamp = data["timestamp"]
-    note = data.get("note", "")
-
+    new_timestamp = data.get("timestamp", None)
+    
     transactions = load_transaction()
     updated = False
 
     for t in transactions:
         if str(t.timestamp) == str(id):
             t.amount = amount
-            t.timestamp = new_timestamp  # Be careful: see note above!
-            t.note = note
+            
+            if new_timestamp:
+                t.timestamp = new_timestamp
+            
+            if "note" in data:
+                t.note = data["note"]
+            
             updated = True
             break
 
@@ -27,15 +31,18 @@ def update_transaction():
 
 
 
+
 def delete_transaction():
     data = request.get_json()
-    id = data["id"]
+    id = data.get("id")
+    if not id:
+        return jsonify({"status": "error", "message": "Missing transaction ID"}), 400
 
     transactions = load_transaction()
     new_transactions = [t for t in transactions if str(t.timestamp) != str(id)]
+
     if len(new_transactions) == len(transactions):
         return jsonify({"status": "not found"}), 404
 
     save_transaction(new_transactions)
     return jsonify({"status": "deleted"})
-

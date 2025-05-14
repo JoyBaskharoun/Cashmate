@@ -27,7 +27,7 @@
 
 .dashboard-main-section {
   background-color: var(--secondary);
-  padding: 24px;
+  padding: 16px;
   border-radius: 16px;
 }
 
@@ -41,11 +41,13 @@
   padding-bottom: 8px;
   border-bottom: 1px var(--white) solid;
   font-weight: bold;
+  color: var(--primary);
 }
 
 .summary-p span{
   font-weight: normal;
   font-size: 18px;
+  color: var(--text-primary);
 }
 
 .summary-link {
@@ -103,4 +105,12 @@ tr {
 
 tbody tr:hover {
   background-color: var(--white-50);
+}
+
+h3{
+  color: var(--primary);
+}
+
+#dashboard-table thead{
+  color: var(--primary);
 }

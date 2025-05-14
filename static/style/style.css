@@ -105,7 +105,7 @@ button {
 }
 
 .secondary-button {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .icon {
@@ -195,6 +195,7 @@ input[type=number] {
 
 #drop-down-arrow {
   cursor: pointer;
+  width: 12px;
 }
 
 select{

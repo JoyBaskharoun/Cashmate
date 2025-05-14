@@ -9,15 +9,16 @@ def load_transaction():
         with open(TRANSACTIONS_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
             transactions = []
-            for username, items in data.items():
+            for email, items in data.items():
                 for item in items:
                     transactions.append(Transaction(
-                        username,
-                        item["amount"],
-                        item["t_type"],
-                        item["category"],
-                        item["timestamp"],
-                        item.get("note", "")
+                        email=item["email"],
+                        amount=item["amount"],
+                        t_type=item["t_type"],
+                        category=item["category"],
+                        timestamp=item["timestamp"],
+                        note=item.get("note", ""),
+                        id=item.get("id")  # Load id if present
                     ))
             return transactions
     except:
@@ -26,13 +27,14 @@ def load_transaction():
 def save_transaction(transactions):
     grouped = {}
     for t in transactions:
-        grouped.setdefault(t.username, []).append(t.to_dict())
+        grouped.setdefault(t.email, []).append(t.to_dict())
     with open(TRANSACTIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(grouped, f, indent=4)
 
-def add_transaction(username, amount, t_type, category, note=""):
-    timestamp = datetime.now().isoformat()
-    new_transaction = Transaction(username, amount, t_type, category, timestamp, note)
+def add_transaction(email, amount, t_type, category, note="", timestamp=None):
+    if timestamp is None:
+        timestamp = datetime.now().isoformat(timespec='minutes')
+    new_transaction = Transaction(email, amount, t_type, category, timestamp, note)
     transactions = load_transaction()
     transactions.append(new_transaction)
     save_transaction(transactions)

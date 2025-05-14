@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style/style.css">
-    <link rel="stylesheet" href="../static/style/login.css">
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/login.css" />
     <title>Login</title>
   </head>
   <body>
@@ -20,6 +20,10 @@
           />
         </div>
 
+        <div id="message" style="color: var(--negative-signal)">
+          {{message}}
+        </div>
+
         <div class="login-form">
           <h3>Welcome back!</h3>
 
@@ -30,6 +34,15 @@
               type="text"
               required
               placeholder="First Name"
+            />
+
+          <div class="input-fields-container">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="E-mail"
             />
             <input
               id="password"
@@ -54,10 +67,8 @@
       document
         .querySelector(".login-form-container")
         .addEventListener("submit", function (e) {
-          const username = document.querySelector(
-            'input[name="username"]'
-          ).value;
-          localStorage.setItem("username", username);
+          const username = document.querySelector('input[name="username"]').value;
+          localStorage.setItem("username", username); // store email as "username" key for compatibility
         });
     </script>
   </body>

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask
 from routes.authentications import signup_route, login_route, logout_route
 from routes.dashboard import dashboard_route
 from routes.transactions import add_route, income_route, expenses_route

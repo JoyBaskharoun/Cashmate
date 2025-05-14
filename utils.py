@@ -1,5 +1,5 @@
 # Read HTML file
-def get_html(page):
+def get_html(page, message=""):
     with open(f"templates/{page}.html", "r", encoding='utf-8') as file:
-        return file.read()
-    
+        content = file.read()               
+    return content.replace("{{message}}", message)  
