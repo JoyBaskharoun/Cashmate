@@ -32,11 +32,18 @@
       </div>
 
       <!-- Custom confirmation modal -->
-      <div id="logout-modal" class="modal" style="display: none;">
+      <div id="logout-modal" class="modal" style="display: none">
         <div class="modal-content">
-          <p style="font-weight: 500; margin-bottom: 16px;">Are you sure you want to log out?</p>
-          <div class="" style="display: flex; justify-content: center;  gap: 8px;">
-            <button id="confirm-logout" class="secondary-button">Yes, log out</button>
+          <p style="font-weight: 500; margin-bottom: 16px">
+            Are you sure you want to log out?
+          </p>
+          <div
+            class=""
+            style="display: flex; justify-content: center; gap: 8px"
+          >
+            <button id="confirm-logout" class="secondary-button">
+              Yes, log out
+            </button>
             <button id="cancel-logout" class="primary-button">Cancel</button>
           </div>
         </div>
@@ -69,8 +76,15 @@
             </p>
 
             <div class="summary-p summary-link" id="all-income">
-              <p>Total Income: <span id="income">${{total_income}}</span></p>
-              <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
+              <img src="../static/images/clock.svg" alt="" class="left-side" />
+              <div class="right-side">
+                <p>Total Income: <span id="income">${{total_income}}</span></p>
+                <img
+                  src="../static/images/icons/arrow.svg"
+                  alt=""
+                  class="icon"
+                />
+              </div>
             </div>
 
             <div
@@ -78,11 +92,18 @@
               style="border: none"
               id="all-expenses"
             >
-              <p>
-                Total Expenses:
-                <span>${{total_expense}}</span>
-              </p>
-              <img src="../static/images/icons/arrow.svg" alt="" class="icon" />
+              <img src="../static/images/alarm.svg" alt="" class="left-side" />
+              <div class="right-side">
+                <p>
+                  Total Expenses:
+                  <span>${{total_expense}}</span>
+                </p>
+                <img
+                  src="../static/images/icons/arrow.svg"
+                  alt=""
+                  class="icon"
+                />
+              </div>
             </div>
           </div>
         </section>

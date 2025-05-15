@@ -31,6 +31,22 @@
             "timestamp": "2025-05-13T12:12",
             "note": "last",
             "id": "eabf424e-a82e-44e8-bbaf-11dfed720e89"
+        },
+        {
+            "amount": 50.0,
+            "t_type": "expense",
+            "category": "Transport",
+            "timestamp": "2025-05-15T16:39",
+            "note": "",
+            "id": "9a0b4a53-fa6a-4290-b338-0826a667db82"
+        },
+        {
+            "amount": 500.0,
+            "t_type": "expense",
+            "category": "Car",
+            "timestamp": "2025-05-01T01:01",
+            "note": "",
+            "id": "418ba393-e909-45aa-bd8f-22bc7dadb8b8"
         }
     ]
 }

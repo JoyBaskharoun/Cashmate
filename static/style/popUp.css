@@ -4,7 +4,7 @@
     z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    background-color: rgba(46, 31, 71, .85);
+    background-color: var(--overlay);
     backdrop-filter: blur(2px);
     display: flex;
     justify-content: center;
