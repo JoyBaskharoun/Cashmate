@@ -13,12 +13,12 @@ class Transaction:
 
     def to_dict(self):
         return {
-            "email": self.email,
             "amount": self.amount,
             "t_type": self.t_type,
             "category": self.category,
             "timestamp": self.timestamp,
-            "note": self.note
+            "note": self.note,
+            "id": self.id 
         }
 
     def formatted_date(self):

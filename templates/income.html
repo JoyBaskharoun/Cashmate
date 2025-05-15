@@ -34,8 +34,7 @@
     <main>
       <h2>All Incomes</h2>
 
-      <form method="GET" action="/income">
-        <!-- <label for="filter">Filter by:</label> -->
+      <form id="filter-form">
         <select name="filter" id="filter">
           <option value="day">Day</option>
           <option value="week">Week</option>
@@ -63,13 +62,33 @@
     <script src="../static/script/usrname.js"></script>
     <script src="../static/script/editTable.js"></script>
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const selectedFilter = urlParams.get("filter");
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const selectedFilter = urlParams.get("filter");
 
-      if (selectedFilter) {
-        const filterSelect = document.getElementById("filter");
-        filterSelect.value = selectedFilter;
-      }
+      // if (selectedFilter) {
+      //   const filterSelect = document.getElementById("filter");
+      //   filterSelect.value = selectedFilter;
+      // }
+
+      document
+        .getElementById("filter-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent page reload
+          const filterValue = document.getElementById("filter").value;
+
+          // Update the URL with the filter query param without reloading the page
+          const newUrl = `${window.location.pathname}?filter=${filterValue}`;
+          window.history.pushState({ filter: filterValue }, "", newUrl);
+
+          // Fetch and render filtered data (you need to implement this function)
+          fetchFilteredData(filterValue);
+        });
+
+        // Run when the page loads
+        window.onload = function() {
+            // Replace the current URL with the clean route (no query parameters)
+            history.replaceState(null, '', '/income');
+        };
     </script>
   </body>
 </html>

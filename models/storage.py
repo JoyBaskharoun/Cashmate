@@ -12,7 +12,7 @@ def load_transaction():
             for email, items in data.items():
                 for item in items:
                     transactions.append(Transaction(
-                        email=item["email"],
+                        email,
                         amount=item["amount"],
                         t_type=item["t_type"],
                         category=item["category"],

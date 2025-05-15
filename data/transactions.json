@@ -1,28 +1,36 @@
 {
     "joy@mail.com": [
         {
-            "email": "joy@mail.com",
-            "amount": 50.5,
+            "amount": 450.0,
+            "t_type": "income",
+            "category": "Other",
+            "timestamp": "2025-05-15T10:09",
+            "note": "edited",
+            "id": "c0439ab1-3ae3-449f-af61-bdba99507fd1"
+        },
+        {
+            "amount": 2.0,
             "t_type": "income",
             "category": "Salary",
-            "timestamp": "2025-05-16T10:10",
-            "note": "6"
+            "timestamp": "2005-05-07T02:20",
+            "note": "ed",
+            "id": "26645793-c98a-4767-af5e-9556375d00fe"
         },
         {
-            "email": "joy@mail.com",
-            "amount": 505.5,
+            "amount": 500.0,
             "t_type": "income",
-            "category": "Freelance",
-            "timestamp": "2025-05-14T15:27",
-            "note": "5"
+            "category": "Salary",
+            "timestamp": "2025-05-09T10:10",
+            "note": "new last",
+            "id": "d934da48-da8d-4de3-878a-dd23afb8cce9"
         },
         {
-            "email": "joy@mail.com",
-            "amount": 523.0,
-            "t_type": "expense",
-            "category": "Bills",
-            "timestamp": "2025-05-14T15:33",
-            "note": ""
+            "amount": 3265.0,
+            "t_type": "income",
+            "category": "Salary",
+            "timestamp": "2025-05-13T12:12",
+            "note": "last",
+            "id": "eabf424e-a82e-44e8-bbaf-11dfed720e89"
         }
     ]
 }

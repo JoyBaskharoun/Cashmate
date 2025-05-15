@@ -85,4 +85,4 @@ def login_route():
 
 def logout_route():
     session.clear()
-    return redirect("/login")
+    return redirect("/")

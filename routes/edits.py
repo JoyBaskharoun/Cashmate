@@ -3,23 +3,30 @@ from models.storage import load_transaction, save_transaction
 
 def update_transaction():
     data = request.get_json()
-    id = data.get("id") 
-    amount = float(data["amount"])
-    new_timestamp = data.get("timestamp", None)
-    
+    id = data.get("id")
+    if not id:
+        return jsonify({"status": "error", "message": "Missing transaction ID"}), 400
+
     transactions = load_transaction()
     updated = False
 
     for t in transactions:
-        if str(t.timestamp) == str(id):
-            t.amount = amount
-            
-            if new_timestamp:
-                t.timestamp = new_timestamp
-            
+        if str(t.id) == str(id):
+            # Update amount only if provided and valid
+            if "amount" in data:
+                try:
+                    t.amount = float(data["amount"])
+                except (ValueError, TypeError):
+                    return jsonify({"status": "error", "message": "Invalid amount value"}), 400
+
+            # Update timestamp only if provided and non-empty
+            if "timestamp" in data and data["timestamp"]:
+                t.timestamp = data["timestamp"]
+
+            # Update note only if provided (including empty string)
             if "note" in data:
                 t.note = data["note"]
-            
+
             updated = True
             break
 
@@ -27,7 +34,7 @@ def update_transaction():
         save_transaction(transactions)
         return jsonify({"status": "success"})
     else:
-        return jsonify({"status": "not found"})
+        return jsonify({"status": "not found"}), 404
 
 
 
@@ -39,7 +46,7 @@ def delete_transaction():
         return jsonify({"status": "error", "message": "Missing transaction ID"}), 400
 
     transactions = load_transaction()
-    new_transactions = [t for t in transactions if str(t.timestamp) != str(id)]
+    new_transactions = [t for t in transactions if str(t.id) != str(id)]
 
     if len(new_transactions) == len(transactions):
         return jsonify({"status": "not found"}), 404

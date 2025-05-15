@@ -22,6 +22,10 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
     ]
     filtered = filter_transactions_by_date(filtered_transactions, filter_type)
 
+    # Sort filtered transactions by timestamp descending (newest first)
+    filtered.sort(key=lambda t: datetime.fromisoformat(t.timestamp), reverse=True)
+
+
     category_dict = {}
     for t in filtered:
         category_dict.setdefault(t.category, []).append(t)
@@ -41,7 +45,7 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
         """
         for t in txns:
             html_rows += f"""
-            <tr data-id="{t.timestamp}">
+            <tr data-id="{t.id}">
                 <td class="amount-cell">${t.amount:.2f}</td>
                 <td class="date-cell">{t.formatted_date()}</td>
                 <td class="note-cell">{t.note if t.note else "—"}</td>                    
