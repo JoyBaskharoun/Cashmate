@@ -7,57 +7,14 @@
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/dashboard.css" />
     <link rel="stylesheet" href="../static/style/popUp.css" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
   </head>
   <body>
-    <nav id="main-nav">
-      <a href="/dashboard"
-        ><img src="../static/images/logo.svg" alt="logo" id="logo"
-      /></a>
-
-      <!-- user welcome msg -->
-      <div id="welcomeUserMsg">
-        Hey <span id="user-display"></span>!
-
-        <div id="drop-down-container">
-          <img
-            src="../static/images/icons/arrow.svg"
-            alt="arrow"
-            id="drop-down-arrow"
-            class="icon"
-          />
-          <div id="drop-down-menu">
-            <p id="logout">Log out</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Custom confirmation modal -->
-      <div id="logout-modal" class="modal" style="display: none">
-        <div class="modal-content">
-          <p style="font-weight: 500; margin-bottom: 16px">
-            Are you sure you want to log out?
-          </p>
-          <div
-            class=""
-            style="display: flex; justify-content: center; gap: 8px"
-          >
-            <button id="confirm-logout" class="secondary-button">
-              Yes, log out
-            </button>
-            <button id="cancel-logout" class="primary-button">Cancel</button>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar-placeholder"></div>
 
     <main>
       <!-- add transaction btn -->
       <div id="add-transaction-container">
-        <img
-          src="../static/images/dashboard-add.svg"
-          alt=""
-          id="add-transaction-img"
-        />
         <a href="/add" id="add-transaction-btn">
           <button class="primary-button">Add transaction</button></a
         >
@@ -71,14 +28,21 @@
             <h3>Summary</h3>
           </div>
           <div id="summary" class="dashboard-sub">
-            <p class="summary-p">
-              Current Balance: <span id="balance">${{balance}}</span>
-            </p>
+            <div class="summary-p current">
+              <p>Current Balance:</p>
+              <p id="balance">${{balance}}</p>
+            </div>
 
             <div class="summary-p summary-link" id="all-income">
-              <img src="../static/images/clock.svg" alt="" class="left-side" />
-              <div class="right-side">
-                <p>Total Income: <span id="income">${{total_income}}</span></p>
+              <div class="total-container">
+                <div class="right-side">
+                  <div class="color-box-cont">
+                    <div class="color-box"></div>
+                    <p>Total Income:</p>
+                  </div>
+                  <p id="income">${{total_income}}</p>
+                </div>
+
                 <img
                   src="../static/images/icons/arrow.svg"
                   alt=""
@@ -87,23 +51,27 @@
               </div>
             </div>
 
-            <div
-              class="summary-p summary-link"
-              style="border: none"
-              id="all-expenses"
-            >
-              <img src="../static/images/alarm.svg" alt="" class="left-side" />
-              <div class="right-side">
-                <p>
-                  Total Expenses:
-                  <span>${{total_expense}}</span>
-                </p>
+            <hr style="border: 1px solid var(--white-50)" />
+
+            <div class="summary-p summary-link" id="all-expenses">
+              <div class="total-container">
+                <div class="right-side">
+                  <div class="color-box-cont">
+                    <div class="color-box"></div>
+                    <p>Total Expenses:</p>
+                  </div>
+                  <p id="expenses">${{total_expense}}</p>
+                </div>
                 <img
                   src="../static/images/icons/arrow.svg"
                   alt=""
                   class="icon"
                 />
               </div>
+            </div>
+
+            <div class="chart-container">
+              <canvas id="financeChart"></canvas>
             </div>
           </div>
         </section>
@@ -133,6 +101,7 @@
       </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const allIncome = document.getElementById("all-income");
       const allExpenses = document.getElementById("all-expenses");
@@ -144,10 +113,70 @@
       allExpenses.addEventListener("click", function () {
         window.location.href = "/expenses";
       });
-    </script>
 
-    <script src="../static/script/usrname.js"></script>
+      fetch("/api/user-email")
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch user email");
+          return res.json();
+        })
+        .then((userData) => {
+          const userEmail = userData.email;
+          return fetch("/data/transactions.json")
+            .then((res) => {
+              if (!res.ok) throw new Error("Failed to fetch transactions");
+              return res.json();
+            })
+            .then((data) => {
+              const transactions = data[userEmail] || [];
+
+              let income = 0;
+              let expenses = 0;
+
+              transactions.forEach((t) => {
+                if (t && t.t_type && t.amount !== undefined) {
+                  if (t.t_type.toLowerCase() === "income") {
+                    income += parseFloat(t.amount);
+                  } else {
+                    expenses += parseFloat(t.amount);
+                  }
+                } else {
+                  console.warn("Skipping invalid transaction:", t);
+                }
+              });
+
+              const ctx = document
+                .getElementById("financeChart")
+                .getContext("2d");
+              new Chart(ctx, {
+                type: "doughnut",
+                data: {
+                  labels: ["Income", "Expenses"],
+                  datasets: [
+                    {
+                      label: "Amount ($)",
+                      data: [income, expenses],
+                      backgroundColor: [
+                        "rgba(217, 232, 164, 1)",
+                        "rgba(141, 74, 86, 1)",
+                      ],
+                    },
+                  ],
+                },
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      display: false,
+                    },
+                  },
+                },
+              });
+            });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    </script>
     <script src="../static/script/script.js"></script>
-    <script src="../static/script/popUp.js"></script>
   </body>
 </html>

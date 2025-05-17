@@ -5,7 +5,6 @@ from routes.authentications import read_users
 
 def dashboard_route():
     email = session.get("email")
-    # Find username from users.json
     
     users = read_users()
     user = next((u for u in users if u["email"] == email), None)
@@ -35,3 +34,6 @@ def dashboard_route():
     html = html.replace("{{username}}", username) 
     
     return html
+
+
+

@@ -4,8 +4,6 @@ from models.storage import load_transaction, save_transaction
 def update_transaction():
     data = request.get_json()
     id = data.get("id")
-    if not id:
-        return jsonify({"status": "error", "message": "Missing transaction ID"}), 400
 
     transactions = load_transaction()
     updated = False
@@ -17,39 +15,36 @@ def update_transaction():
                 try:
                     t.amount = float(data["amount"])
                 except (ValueError, TypeError):
-                    return jsonify({"status": "error", "message": "Invalid amount value"}), 400
+                    return jsonify({"status": "error", "message": "Invalid amount value"})
 
             # Update timestamp only if provided and non-empty
             if "timestamp" in data and data["timestamp"]:
                 t.timestamp = data["timestamp"]
 
-            # Update note only if provided (including empty string)
+            # ~ note only if provided 
             if "note" in data:
                 t.note = data["note"]
 
             updated = True
-            break
+            break 
 
     if updated:
         save_transaction(transactions)
         return jsonify({"status": "success"})
     else:
-        return jsonify({"status": "not found"}), 404
-
+        return jsonify({"status": "error", "message": "Transaction not found"}), 404
 
 
 
 def delete_transaction():
     data = request.get_json()
     id = data.get("id")
-    if not id:
-        return jsonify({"status": "error", "message": "Missing transaction ID"}), 400
 
     transactions = load_transaction()
     new_transactions = [t for t in transactions if str(t.id) != str(id)]
 
     if len(new_transactions) == len(transactions):
-        return jsonify({"status": "not found"}), 404
+        return jsonify({"status": "not found"})
 
     save_transaction(new_transactions)
     return jsonify({"status": "deleted"})

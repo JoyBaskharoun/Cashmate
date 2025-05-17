@@ -2,14 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Space+Grotesk:wght@300..700&display=swap");
 
 :root {
-  /* colors */
-  --primary: rgba(46, 31, 71, 1);
-  --accent: rgba(231, 109, 109, 1);
+  /*colors */
+  --primary: #2e1f47;
+  --accent: #e76d6d;
   --accent-dark: #e25858;
   --secondary: rgba(235, 221, 203, 1);
-  --secondary-50: rgba(235, 221, 203, 0.5);
+  --secondary-50: #ebddcb80;
   --secondary-dark: rgba(235, 225, 205);
-  --background: rgba(253, 249, 243, 1);
+  --background: #fdf9f3;
   --positive-signal: rgba(217, 232, 164, 1);
   --negative-signal: rgba(141, 74, 86, 1);
   --text-primary: rgba(42, 42, 42, 1);
@@ -32,19 +32,43 @@
   --main-shadow: 1px 1px 8px rgba(42, 42, 42, 0.2);
 }
 
+:root.dark-theme {
+  --primary: rgba(171, 157, 206, 1);
+  --accent: rgba(231, 109, 109, 1);
+  --accent-dark: #e25858;
+
+  --secondary: rgba(60, 52, 41, 1);
+  --secondary-50: rgba(60, 52, 41, 0.5);
+  --secondary-dark: rgba(45, 39, 31, 1);
+
+  --background: rgba(20, 13, 32, 1);
+  --positive-signal: rgba(189, 204, 126, 1);
+  --negative-signal: rgba(231, 133, 149, 1);
+
+  --text-primary: rgba(245, 245, 245, 1);
+  --text-secondary: rgba(180, 180, 180, 1);
+
+  --main-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
 
-body {
-  background: url("images/noise-pattern.png") 0% 0% / 150px 150px repeat,
-    var(--background);
   font-family: var(--main-font);
   font-size: var(--text-body-size);
   color: var(--text-primary);
-  height: 100vh;
+
+  transition: background-color .2s ease;
+  -webkit-transition: background-color .2s ease;
+  -moz-transition: background-color .2s ease;
+  -ms-transition: background-color .2s ease;
+  -o-transition: background-color .2s ease;
+}
+
+body {
+  background: url("/static/images/noise-pattern.png") 0% 0% / 200px 200px repeat, var(--background);
 }
 
 /* fonts */
@@ -87,7 +111,7 @@ button {
   font-weight: 500;
   font-size: inherit;
   display: flex;
-  padding: 8px 24px;
+  padding: 6px 24px;
   justify-content: center;
   align-items: center;
   background-color: transparent;
@@ -114,20 +138,13 @@ button {
   width: 16px;
 }
 
-.main-centered {
-  height: 85vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* inputs */
 input {
   border: none;
   border-radius: 8px;
   background: var(--white);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
-  padding: 12px 14px;
+  padding: 10px 14px;
   width: 100%;
   font-size: inherit;
   font-family: inherit;
@@ -153,13 +170,52 @@ input[type="number"] {
 
 /* Navbar */
 #main-nav {
+  position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--main-padding);
+  box-shadow: 1px 1px 2px rgba(46, 31, 71, 0.2);
+  max-height: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+  border-radius: 0 0 24px 24px;
+  -webkit-border-radius: 0 0 24px 24px;
+  -moz-border-radius: 0 0 24px 24px;
+  -ms-border-radius: 0 0 24px 24px;
+  -o-border-radius: 0 0 24px 24px;
 }
 
 #logo {
   width: 100px;
+}
+
+nav #right-side,
+nav #left-side,
+nav ul {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+nav #left-side {
+  gap: 48px;
+}
+
+nav li {
+  list-style: none;
+  font-weight: bold;
+}
+
+nav li:hover {
+  color: var(--accent);
+  cursor: pointer;
+}
+
+#theme-icon {
+  cursor: pointer;
+  width: 24px;
 }
 
 #welcomeUserMsg {
@@ -183,6 +239,15 @@ input[type="number"] {
   padding: 0.5rem;
   border-radius: 8px;
   cursor: pointer;
+  box-shadow: var(--main-shadow);
+}
+
+#drop-down-menu:hover {
+  background-color: var(--negative-signal);
+}
+
+#drop-down-menu:hover P {
+  color: var(--white);
 }
 
 #drop-down-menu.show {
@@ -195,6 +260,10 @@ input[type="number"] {
 
 #drop-down-arrow {
   cursor: pointer;
+  display: inline;
+}
+
+#drop-down-arrow img {
   width: 12px;
 }
 
@@ -209,6 +278,7 @@ select option {
 /* Main tag */
 main {
   padding: var(--main-padding);
+  margin: 0 auto;
 }
 
 /* hover effects */
@@ -226,7 +296,8 @@ button:hover {
 }
 
 /* selection */
-*::selection {
+*::selection,
+::-webkit-selection {
   background-color: var(--accent);
   color: var(--text-primary);
 }

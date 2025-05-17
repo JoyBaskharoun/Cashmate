@@ -1,29 +1,47 @@
 @import url(style.css);
 
+
 /* hero section */
 #hero-section-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 56px 0;
-  margin-bottom: 120px;
+  gap: 56px;
+  margin: 80px 0;
+  margin-bottom: 80px;
+
 }
 
-#hero-img {
+#hero-h1 i,
+#hero-h1 span {
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 #hero-h1 {
-  font-size: 48px;
+  font-size: 72px;
   color: var(--primary);
+  margin-bottom: 24px;
 }
 
-#hero-h1 span{
+#hero-h1 span {
   color: var(--positive-signal);
   text-shadow: 1px 1px 2px var(--primary);
 }
 
 #hero-section-container div {
   margin: 24px 0;
+}
+
+#hero-img {
+  width: 348px;
+}
+
+#right-side-container p {
+  font-size: 18px;
+  line-height: 180%;
+  margin-bottom: 24px;
 }
 
 #sign-options-container {
@@ -35,11 +53,12 @@
 #services {
   display: flex;
   gap: 16px;
+  justify-content: center;
 }
 
 .card img {
   position: absolute;
-  top: -46px;
+  top: -40px;
   left: 50%;
   transform: translateX(-50%);
   width: 70px;
@@ -50,20 +69,19 @@
   display: flex;
   padding: 36px 24px 24px 24px;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 6px;
   border-radius: 24px;
   background: var(--secondary-50);
 
-  max-width: 370px;
+  max-width: 300px;
 }
 
-.card:hover img{
-  top: -52px;
+.card:hover img {
+  top: -46px;
   transition: all .5s ease;
 }
 
-.card:hover{
+.card:hover {
   background-color: var(--secondary-dark);
   transition: all .5s ease;
 }

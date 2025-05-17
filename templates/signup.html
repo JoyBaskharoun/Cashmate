@@ -6,21 +6,29 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/login.css" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
   </head>
   <body>
-    <main class="main-centered">
+    <nav id="main-nav">
+      <a href="/"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
+    </nav>
+
+    <main>
       <form method="post" action="/signup" class="login-form-container">
         <div>
           <img
             src="../static/images/signup.svg"
-            alt="mobile login form illustration"
+            alt="mobile signup form illustration"
             class="login-img"
           />
         </div>
 
         <div class="login-form">
           <h3>Create an account easily</h3>
-          <div class="input-fields-container" style="gap: 4px">
+
+          <div class="input-fields-container">
             <input
               type="text"
               name="username"
@@ -30,15 +38,15 @@
               pattern="^[A-Za-z0-9_]+$"
               title="Username should be 3–20 characters, letters, numbers, or underscores only."
               required
-              /><br />
+            />
 
             <input
               type="email"
               name="email"
               placeholder="E-mail"
               required
-            /><br />
-            
+            />
+
             <input
               type="password"
               name="password"
@@ -46,19 +54,20 @@
               required
               minlength="6"
               maxlength="30"
-            /><br />
-            
+            />
+
             <input
               type="password"
               name="confirm-password"
               placeholder="Confirm Password"
               required
-            /><br />
+            />
+            
           </div>
           <button type="submit" class="primary-button" style="width: 100%">
             Sign Up
           </button>
-          <p>
+          <p class="signup-link">
             Already have an account?
             <span><a href="/login" class="link">Login</a></span>
           </p>

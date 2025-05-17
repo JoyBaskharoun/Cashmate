@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/login.css" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
     <title>Login</title>
   </head>
   <body>
-    /
+    <nav id="main-nav" >
+      <a href="/"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
+    </nav>
 
-    <main class="main-centered">
+    <main>
       <form method="post" action="/login" class="login-form-container">
         <div>
           <img
@@ -20,23 +25,18 @@
           />
         </div>
 
-        <div id="message" style="color: var(--negative-signal)">
-          {{message}}
-        </div>
-
         <div class="login-form">
           <h3>Welcome back!</h3>
 
           <div class="input-fields-container">
-            <input
+            <!-- <input
               id="username"
               name="username"
               type="text"
               required
               placeholder="First Name"
-            />
+            /> -->
 
-          <div class="input-fields-container">
             <input
               id="email"
               name="email"
@@ -51,6 +51,9 @@
               required
               placeholder="Password"
             />
+            <div id="message">
+              {{message}}
+            </div>
           </div>
 
           <button type="submit" class="primary-button" style="width: 100%">
@@ -67,8 +70,8 @@
       document
         .querySelector(".login-form-container")
         .addEventListener("submit", function (e) {
-          const username = document.querySelector('input[name="username"]').value;
-          localStorage.setItem("username", username); // store email as "username" key for compatibility
+          const email = document.querySelector('input[name="email"]').value;
+          localStorage.setItem("email", email); // store email as "username" key for compatibility
         });
     </script>
   </body>

@@ -12,7 +12,8 @@ def filter_transactions_by_date(transactions, filter_type):
     if filter_type == "all-time":
         return transactions
     cutoff = now - periods.get(filter_type, timedelta(weeks=1))
-    return [t for t in transactions if datetime.fromisoformat(t.timestamp) >= cutoff]
+    return [t for t in transactions if datetime.fromisoformat(t.timestamp) >= cutoff] #Returns a new list containing only transactions whose timestamp is newer or equal to the cutoff date.
+
 
 def render_grouped_transactions(email, t_type_filter, filter_type):
     transactions = load_transaction()
@@ -22,8 +23,11 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
     ]
     filtered = filter_transactions_by_date(filtered_transactions, filter_type)
 
-    # Sort filtered transactions by timestamp descending (newest first)
-    filtered.sort(key=lambda t: datetime.fromisoformat(t.timestamp), reverse=True)
+    #sort filtered transactions by date descending 
+    def get_transaction_datetime(t):
+        return datetime.fromisoformat(t.timestamp)
+
+    filtered.sort(key=get_transaction_datetime, reverse=True)
 
 
     category_dict = {}
@@ -34,7 +38,7 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
     for idx, (category, txns) in enumerate(category_dict.items()):
         total = sum(t.amount for t in txns)
         html_rows += f"""
-        <tr class="collapsible" id="{t_type_filter}-row-{idx}">
+        <tr id="{t_type_filter}-row-{idx}">
             <td class="bold-td">{category}</td>
             <td class="bold-td">${total:.2f}</td>
         </tr>
@@ -55,7 +59,7 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
                 </td>
             </tr>
             """
-
+        # close
         html_rows += """
                     </tbody>
                 </table>

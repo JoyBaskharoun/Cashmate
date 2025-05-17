@@ -5,27 +5,11 @@
             "t_type": "income",
             "category": "Other",
             "timestamp": "2025-05-15T10:09",
-            "note": "edited",
+            "note": "edited again",
             "id": "c0439ab1-3ae3-449f-af61-bdba99507fd1"
         },
         {
-            "amount": 2.0,
-            "t_type": "income",
-            "category": "Salary",
-            "timestamp": "2005-05-07T02:20",
-            "note": "ed",
-            "id": "26645793-c98a-4767-af5e-9556375d00fe"
-        },
-        {
-            "amount": 500.0,
-            "t_type": "income",
-            "category": "Salary",
-            "timestamp": "2025-05-09T10:10",
-            "note": "new last",
-            "id": "d934da48-da8d-4de3-878a-dd23afb8cce9"
-        },
-        {
-            "amount": 3265.0,
+            "amount": 1265.0,
             "t_type": "income",
             "category": "Salary",
             "timestamp": "2025-05-13T12:12",
@@ -47,6 +31,38 @@
             "timestamp": "2025-05-01T01:01",
             "note": "",
             "id": "418ba393-e909-45aa-bd8f-22bc7dadb8b8"
+        },
+        {
+            "amount": 242.5,
+            "t_type": "expense",
+            "category": "Bills",
+            "timestamp": "2025-05-17T15:24",
+            "note": "",
+            "id": "2521484f-5ef5-4cd4-a853-200c47f9ad55"
+        },
+        {
+            "amount": 250.0,
+            "t_type": "expense",
+            "category": "Transport",
+            "timestamp": "2025-05-17T15:29",
+            "note": "let",
+            "id": "ac917eae-d313-4448-ab57-0e2564233ee4"
+        },
+        {
+            "amount": 60.0,
+            "t_type": "expense",
+            "category": "Bills",
+            "timestamp": "2025-05-17T15:29",
+            "note": "",
+            "id": "d7b56cf1-7e48-491d-a183-3876248f9b2f"
+        },
+        {
+            "amount": 500.0,
+            "t_type": "income",
+            "category": "Freelance",
+            "timestamp": "2025-05-28T12:12",
+            "note": "",
+            "id": "e80d88a6-5e38-4c23-bb07-e366bcaa4d8c"
         }
     ]
 }

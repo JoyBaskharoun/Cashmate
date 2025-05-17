@@ -2,11 +2,11 @@ import json
 from datetime import datetime
 from models.transactions import Transaction
 
-TRANSACTIONS_FILE = "data/transactions.json"
+t_file = "data/transactions.json"
 
 def load_transaction():
     try:
-        with open(TRANSACTIONS_FILE, "r", encoding="utf-8") as f:
+        with open(t_file, "r") as f:
             data = json.load(f)
             transactions = []
             for email, items in data.items():
@@ -18,7 +18,7 @@ def load_transaction():
                         category=item["category"],
                         timestamp=item["timestamp"],
                         note=item.get("note", ""),
-                        id=item.get("id")  # Load id if present
+                        id=item.get("id") 
                     ))
             return transactions
     except:
@@ -28,7 +28,7 @@ def save_transaction(transactions):
     grouped = {}
     for t in transactions:
         grouped.setdefault(t.email, []).append(t.to_dict())
-    with open(TRANSACTIONS_FILE, "w", encoding="utf-8") as f:
+    with open(t_file, "w") as f:
         json.dump(grouped, f, indent=4)
 
 def add_transaction(email, amount, t_type, category, note="", timestamp=None):

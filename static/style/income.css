@@ -1,6 +1,7 @@
 @import url(style.css);
 
 h2 {
+  margin-top: 80px;
   margin-bottom: 24px;
   text-align: center;
 }
@@ -8,7 +9,7 @@ h2 {
 /* Filter form */
 form {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin: 0 auto;
@@ -16,28 +17,33 @@ form {
   max-width: 200px;
 }
 
-form div{
+form div {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-label{
+label {
   font-weight: 500;
 }
 
 select {
   background-color: var(--secondary);
   font-size: inherit;
-  padding: 10px 16px;
-  border-radius: 8px;
+  padding: 6px 16px;
   border: none;
   transition: all 0.3s ease;
   cursor: pointer;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
 }
 
-select option{
+select option {
   background-color: var(--white);
+  font-weight: 500;
 }
 
 button {
@@ -54,6 +60,8 @@ button:hover {
 /* Table styling */
 table {
   width: 100%;
+  max-width: 868px;
+  margin: 0 auto;
   border-collapse: collapse;
   border-radius: 16px;
   overflow: hidden;
@@ -63,7 +71,13 @@ table {
 
 .thead {
   background-color: var(--primary);
+}
+
+.thead th{
   color: var(--white);
+}
+
+td{
 }
 
 .total,
@@ -71,14 +85,12 @@ table {
   width: 0px;
 }
 
-
 th,
 td {
   padding: 12px;
-  text-align: left;
 }
 
-.icons-container{
+.icons-container {
   display: flex;
   gap: 8px;
   justify-content: end;
@@ -86,6 +98,7 @@ td {
 
 .bold-td {
   font-weight: bold;
+  padding-bottom: 0;
 }
 
 .action-icon {

@@ -5,31 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/income.css" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
     <title>Income</title>
   </head>
   <body>
-    <nav id="main-nav">
-      <a href="/dashboard"
-        ><img src="../static/images/logo.svg" alt="logo" id="logo"
-      /></a>
-
-      <!-- user welcome msg -->
-      <div id="welcomeUserMsg">
-        Hey <span id="user-display"></span>!
-
-        <div id="drop-down-container">
-          <img
-            src="../static/images/icons/arrow.svg"
-            alt="arrow"
-            id="drop-down-arrow"
-            class="icon"
-          />
-          <div id="drop-down-menu">
-            <p id="logout">Log out</p>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar-placeholder"></div>
 
     <main>
       <h2>All Incomes</h2>
@@ -59,36 +39,7 @@
       </table>
     </main>
 
-    <script src="../static/script/usrname.js"></script>
     <script src="../static/script/editTable.js"></script>
-    <script>
-      // const urlParams = new URLSearchParams(window.location.search);
-      // const selectedFilter = urlParams.get("filter");
-
-      // if (selectedFilter) {
-      //   const filterSelect = document.getElementById("filter");
-      //   filterSelect.value = selectedFilter;
-      // }
-
-      document
-        .getElementById("filter-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent page reload
-          const filterValue = document.getElementById("filter").value;
-
-          // Update the URL with the filter query param without reloading the page
-          const newUrl = `${window.location.pathname}?filter=${filterValue}`;
-          window.history.pushState({ filter: filterValue }, "", newUrl);
-
-          // Fetch and render filtered data (you need to implement this function)
-          fetchFilteredData(filterValue);
-        });
-
-        // Run when the page loads
-        window.onload = function() {
-            // Replace the current URL with the clean route (no query parameters)
-            history.replaceState(null, '', '/income');
-        };
-    </script>
+    <script src="/static/script/script.js"></script>
   </body>
 </html>

@@ -1,22 +1,22 @@
 from flask import request, redirect, session
 import json
-from utils import get_html
+from utils import get_html, add_info
 
 
-USER_FILE = "data/users.json"
+u_file = "data/users.json"
 
 def hash_password(password):
     return password + "xyz"
 
 def read_users():
     try:
-        with open(USER_FILE, "r", encoding='utf-8') as file:
+        with open(u_file, "r") as file:
             return json.load(file)
     except:
         return []
 
 def save_users(users):
-    with open(USER_FILE, "w", encoding='utf-8') as file:
+    with open(u_file, "w") as file:
         json.dump(users, file)
 
 
@@ -31,14 +31,14 @@ def signup_route():
         if not email or not username or not password or not confirm_password:
             message = "Please fill in all fields."
         elif len(username) < 3:
-            message = "Username must be at least 3 characters."
+            message = "First name must be at least 3 characters."
         elif len(password) < 6:
             message = "Password must be at least 6 characters."
         elif password != confirm_password:
             message = "Passwords do not match!"
         else:
             users = read_users()
-            # Check if email already taken
+            # check if email already taken
             if any(u["email"] == email for u in users):
                 message = "Email is already registered."
             else:
@@ -48,6 +48,7 @@ def signup_route():
                     "password": hash_password(password)
                 })
                 save_users(users)
+                add_info(username)
                 return '<meta http-equiv="refresh" content="0; url=/login" />'
 
         return get_html("signup", message=message)
@@ -63,19 +64,16 @@ def login_route():
         email = request.form.get("email", "").strip().lower()
         password = request.form.get("password", "")
 
-        if not email or not password:
-            message = "Please enter both email and password."
+        users = read_users()
+        user_match = next(
+            (u for u in users if u["email"] == email and u["password"] == hash_password(password)),
+            None,
+        )
+        if user_match:
+            session["email"] = user_match["email"]
+            return redirect("/dashboard")
         else:
-            users = read_users()
-            user_match = next(
-                (u for u in users if u["email"] == email and u["password"] == hash_password(password)),
-                None,
-            )
-            if user_match:
-                session["email"] = user_match["email"]
-                return redirect("/dashboard")
-            else:
-                message = "Wrong email or password."
+            message = "Wrong email or password."
 
         return get_html("login", message=message)
 

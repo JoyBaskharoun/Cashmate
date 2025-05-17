@@ -3,12 +3,17 @@
 /* Dashboard */
 #add-transaction-container {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   gap: 8px;
 
   margin: 40px;
+  margin-top: 80px;
+}
+
+#add-transaction-container img {
+  width: 80px;
 }
 
 #dashboard-body {
@@ -26,27 +31,33 @@
 }
 
 .dashboard-table-header img {
-  filter: invert(53%) sepia(7%) saturate(4933%) hue-rotate(315deg)
-    brightness(92%) contrast(92%);
+  filter: invert(53%) sepia(7%) saturate(4933%) hue-rotate(315deg) brightness(92%) contrast(92%);
 }
 
 .dashboard-main-section {
   background-color: var(--secondary);
   padding: 16px;
   border-radius: 16px;
+  overflow-y: hidden;
 }
 
 #summary {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .summary-p {
   padding-bottom: 8px;
-  border-bottom: 1px var(--white) solid;
   font-weight: bold;
   color: var(--primary);
+}
+
+.current {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .summary-p span {
@@ -57,7 +68,6 @@
 
 #balance {
   font-weight: 500;
-  /* color: var(--accent-dark); */
 }
 
 .summary-link {
@@ -82,10 +92,16 @@
   width: 56px;
 }
 
-.right-side {
+.total-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+.right-side{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .summary-p span {
@@ -94,15 +110,11 @@
 }
 
 #summary-section {
-  width: 70%;
+  width: 50%;
 }
 
 #recent-transaction-section {
   width: 100%;
-}
-
-.dashboard-sub {
-  overflow-y: scroll;
 }
 
 #dashboard-table {
@@ -126,9 +138,6 @@
   text-overflow: clip;
 }
 
-tr {
-}
-
 tbody tr:hover {
   background-color: var(--white-50);
 }
@@ -139,4 +148,37 @@ h3 {
 
 #dashboard-table thead {
   color: var(--primary);
+}
+
+
+.chart-container {
+  max-width: 200px;
+  margin: 2rem auto;
+}
+
+
+.color-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  border: 2px solid var(--white);
+}
+
+.color-box-cont{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#all-expenses .color-box{
+  background: var(--negative-signal);
+}
+#all-income .color-box{
+  background: var(--positive-signal);
+}
+
+
+#income,
+#expenses{
+  font-weight: 500;
 }
