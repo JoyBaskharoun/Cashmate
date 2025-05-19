@@ -1,13 +1,11 @@
+// to insert partial html without reload
 async function loadHTML(url, elementId) {
   const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to load " + url);
-  }
   const html = await response.text();
   document.getElementById(elementId).innerHTML = html;
 }
 
-// load navbar and modal HTML
+// load navbar & modal 
 async function loadComponents() {
   await loadHTML("/static/navbar.html", "navbar-placeholder");
   await loadHTML("/static/logout-modal.html", "modal-placeholder");
@@ -47,7 +45,7 @@ function toggleTheme() {
   const root = document.documentElement;
   root.classList.toggle("dark-theme");
 
-  // Save current theme state to localStorage
+  // save theme localStorage
   if (root.classList.contains("dark-theme")) {
     localStorage.setItem("theme", "dark");
   } else {
@@ -55,7 +53,7 @@ function toggleTheme() {
   }
 }
 
-// Apply saved theme on page load
+// check for theme, apply on html
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
@@ -67,10 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 document.addEventListener("DOMContentLoaded", async function () {
-  try {
     await loadComponents();
     initNavbar();
-  } catch (error) {
-    console.error(error);
-  }
 });
