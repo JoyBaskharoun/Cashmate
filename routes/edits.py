@@ -29,7 +29,7 @@ def update_transaction():
         save_transaction(transactions) 
         return jsonify({"status": "success"})
     else:
-        return jsonify({"status": "error", "message": "Not found"}), 404
+        return jsonify({"status": "error", "message": "Not found"})
 
 
 def delete_transaction():
