@@ -49,6 +49,24 @@
       </table>
     </main>
 
+    <div id="confirm-modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <p
+          id="confirm-modal-message"
+          style="font-weight: 500; margin-bottom: 16px"
+          id="modal-p"
+        >
+          Are you sure you want to delete this transaction?
+        </p>
+        <div style="display: flex; justify-content: center; gap: 8px">
+          <button id="confirm-modal-yes" class="secondary-button">
+            Yes, delete
+          </button>
+          <button id="confirm-modal-no" class="primary-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../static/script/script.js"></script>
     <script src="../static/script/editTable.js"></script>
   </body>

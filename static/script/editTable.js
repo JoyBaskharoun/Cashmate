@@ -104,4 +104,5 @@ document.querySelectorAll(".delete-btn").forEach((delBtn) => {
     }
     window.addEventListener("click", outsideClickListener);
   });
+
 });
