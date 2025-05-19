@@ -3,10 +3,10 @@
 /* Dashboard */
 #add-transaction-container {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 24px;
 
   margin: 40px;
   margin-top: 80px;
@@ -67,7 +67,7 @@
 }
 
 #balance {
-  font-weight: 500;
+  font-weight: normal;
 }
 
 .summary-link {
@@ -142,7 +142,7 @@ tbody tr:hover {
   background-color: var(--white-50);
 }
 
-h3 {
+.h3 {
   color: var(--accent-dark);
 }
 
@@ -158,9 +158,9 @@ h3 {
 
 
 .color-box {
-  width: 12px;
-  height: 12px;
-  border-radius: 12px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50px;
   border: 2px solid var(--white);
 }
 
@@ -171,14 +171,81 @@ h3 {
 }
 
 #all-expenses .color-box{
-  background: var(--negative-signal);
+  background: var(--secondary-darker);
 }
 #all-income .color-box{
-  background: var(--positive-signal);
+  background: var(--primary);
 }
 
 
 #income,
 #expenses{
-  font-weight: 500;
+  font-weight: normal;
+}
+
+
+
+
+/* Responsivness */
+
+@media (max-width: 768px) {
+  #dashboard-body {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  #summary-section, #recent-transaction-section {
+    width: 100% !important; /* override fixed widths */
+  }
+}
+
+
+@media (max-width: 1024px) {
+  #summary-section {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  #summary-section, #recent-transaction-section {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .summary-p span {
+    font-size: 16px;
+  }
+
+  #dashboard-table th, #dashboard-table td {
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+
+  #add-transaction-container img {
+    width: 60px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  #summary {
+    gap: 16px;
+  }
+
+  .summary-p.current {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .summary-link img.icon {
+    rotate: 0deg;
+    margin-top: 8px;
+  }
 }

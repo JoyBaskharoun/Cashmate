@@ -3,20 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/dashboard.css" />
-    <link rel="stylesheet" href="../static/style/popUp.css" />
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
+    <title>Dashboard</title>
   </head>
   <body>
     <div id="navbar-placeholder"></div>
+    <div id="modal-placeholder"></div>
 
     <main>
       <!-- add transaction btn -->
+
       <div id="add-transaction-container">
+        <h3 id="welcome-msg">Welcome Back, {{username}}!</h3>
         <a href="/add" id="add-transaction-btn">
-          <button class="primary-button">Add transaction</button></a
+          <button class="primary-button">
+            <img
+              src="/static/images/icons/add.svg"
+              alt="plus sign"
+              style="width: 16px; margin-right: 4px"
+            />Add transaction
+          </button></a
         >
         <br />
       </div>
@@ -25,7 +33,7 @@
         <section id="summary-section" class="dashboard-main-section">
           <div class="dashboard-table-header">
             <img src="../static/images/icons/summary.svg" alt="icon" />
-            <h3>Summary</h3>
+            <h3 class="h3">Summary</h3>
           </div>
           <div id="summary" class="dashboard-sub">
             <div class="summary-p current">
@@ -79,7 +87,7 @@
         <section id="recent-transaction-section" class="dashboard-main-section">
           <div class="dashboard-table-header">
             <img src="../static/images/icons/recent.svg" alt="icon" />
-            <h3>Recent Transactions</h3>
+            <h3 class="h3">Recent Transactions</h3>
           </div>
           <div class="dashboard-sub">
             <table id="dashboard-table">
@@ -114,67 +122,51 @@
         window.location.href = "/expenses";
       });
 
+      let userEmail = "";
+
       fetch("/api/user-email")
-        .then((res) => {
-          if (!res.ok) throw new Error("Failed to fetch user email");
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((userData) => {
-          const userEmail = userData.email;
-          return fetch("/data/transactions.json")
-            .then((res) => {
-              if (!res.ok) throw new Error("Failed to fetch transactions");
-              return res.json();
-            })
-            .then((data) => {
-              const transactions = data[userEmail] || [];
-
-              let income = 0;
-              let expenses = 0;
-
-              transactions.forEach((t) => {
-                if (t && t.t_type && t.amount !== undefined) {
-                  if (t.t_type.toLowerCase() === "income") {
-                    income += parseFloat(t.amount);
-                  } else {
-                    expenses += parseFloat(t.amount);
-                  }
-                } else {
-                  console.warn("Skipping invalid transaction:", t);
-                }
-              });
-
-              const ctx = document
-                .getElementById("financeChart")
-                .getContext("2d");
-              new Chart(ctx, {
-                type: "doughnut",
-                data: {
-                  labels: ["Income", "Expenses"],
-                  datasets: [
-                    {
-                      label: "Amount ($)",
-                      data: [income, expenses],
-                      backgroundColor: [
-                        "rgba(217, 232, 164, 1)",
-                        "rgba(141, 74, 86, 1)",
-                      ],
-                    },
-                  ],
-                },
-                options: {
-                  responsive: true,
-                  plugins: {
-                    legend: {
-                      display: false,
-                    },
-                  },
-                },
-              });
-            });
+          userEmail = userData.email;
+          return fetch("/data/transactions.json");
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .then((res) => res.json())
+        .then((data) => {
+          const transactions = data[userEmail] || [];
+
+          let income = 0;
+          let expenses = 0;
+
+          transactions.forEach((t) => {
+            if (t.t_type === "income") {
+              income += Number(t.amount);
+            } else {
+              expenses += Number(t.amount);
+            }
+          });
+
+          const ctx = document.getElementById("financeChart").getContext("2d");
+          new Chart(ctx, {
+            type: "doughnut",
+            data: {
+              labels: ["Income", "Expenses"],
+              datasets: [
+                {
+                  data: [income, expenses],
+                  backgroundColor: ["rgb(177, 162, 143)", "#9c90ad"],
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false },
+              },
+            },
+          });
+        })
+        .catch((err) => {
+          console.log("Something went wrong");
         });
     </script>
     <script src="../static/script/script.js"></script>

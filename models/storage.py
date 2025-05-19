@@ -6,33 +6,38 @@ t_file = "data/transactions.json"
 
 def load_transaction():
     try:
-        with open(t_file, "r") as f:
-            data = json.load(f)
-            transactions = []
-            for email, items in data.items():
-                for item in items:
-                    transactions.append(Transaction(
-                        email,
-                        amount=item["amount"],
-                        t_type=item["t_type"],
-                        category=item["category"],
-                        timestamp=item["timestamp"],
-                        note=item.get("note", ""),
-                        id=item.get("id") 
-                    ))
-            return transactions
+        f = open(t_file, "r")
+        data = json.load(f)
+        f.close()
+        transactions = []
+        for email in data:
+            items = data[email]
+            for item in items:
+                transactions.append(Transaction(
+                    email,
+                    amount=item["amount"],
+                    t_type=item["t_type"],
+                    category=item["category"],
+                    timestamp=item["timestamp"],
+                    note=item.get("note", ""),
+                    id=item.get("id")
+                ))
+        return transactions
     except:
         return []
 
 def save_transaction(transactions):
     grouped = {}
     for t in transactions:
-        grouped.setdefault(t.email, []).append(t.to_dict())
-    with open(t_file, "w") as f:
-        json.dump(grouped, f, indent=4)
+        if t.email not in grouped:
+            grouped[t.email] = []
+        grouped[t.email].append(t.to_dict())
+    f = open(t_file, "w")
+    json.dump(grouped, f)
+    f.close()
 
 def add_transaction(email, amount, t_type, category, note="", timestamp=None):
-    if timestamp is None:
+    if not timestamp:
         timestamp = datetime.now().isoformat(timespec='minutes')
     new_transaction = Transaction(email, amount, t_type, category, timestamp, note)
     transactions = load_transaction()

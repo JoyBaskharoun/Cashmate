@@ -10,6 +10,7 @@
   </head>
   <body>
     <div id="navbar-placeholder"></div>
+    <div id="modal-placeholder"></div>
 
     <main>
     <h2>All Expenses</h2>
@@ -22,7 +23,7 @@
         <option value="year">Year</option>
         <option value="all-time">All time</option>
       </select>
-      <button type="submit">Apply</button>
+      <button type="submit" class="button">Apply</button>
     </form>
 
     <table>
@@ -38,19 +39,7 @@
     </table>
   </main>
 
-  <script src="../static/script/usrname.js"></script>
-  <script src="../static/script/editTable.js"></script>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const selectedFilter = urlParams.get("filter");
-
-      if (selectedFilter) {
-        const filterSelect = document.getElementById("filter");
-        filterSelect.value = selectedFilter;
-      }
-    </script>
-
   <script src="../static/script/script.js"></script>
-  <script src="../static/script/table.js"></script>
+  <script src="../static/script/editTable.js"></script>
   </body>
 </html>

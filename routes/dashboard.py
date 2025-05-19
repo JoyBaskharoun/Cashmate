@@ -5,35 +5,40 @@ from routes.authentications import read_users
 
 def dashboard_route():
     email = session.get("email")
-    
+
     users = read_users()
-    user = next((u for u in users if u["email"] == email), None)
-    username = user["username"] if user else ""
-    
-    html = get_html("dashboard")    
+    user = None
+    for u in users:
+        if u["email"] == email:
+            user = u
+            break
+
+    if user:
+        username = user["username"]
+    else:
+        username = ""
+
+    html = get_html("dashboard")
     transactions = recent_transactions(email)
     summary = get_summary(email)
-        
 
     transactions_html = ""
     for t in transactions:
-        transactions_html += f"""
-        <tr>
-            <td>{t.t_type.capitalize()}</td>
-            <td>${t.amount}</td>
-            <td>{t.category}</td>
-            <td>{t.formatted_date()}</td>
-            <td>{t.note if t.note else "—"}</td>
-        </tr>
-        """
+        transactions_html += "<tr>"
+        transactions_html += "<td>" + t.t_type.capitalize() + "</td>"
+        transactions_html += "<td>$" + str(t.amount) + "</td>"
+        transactions_html += "<td>" + t.category + "</td>"
+        transactions_html += "<td>" + t.formatted_date() + "</td>"
+        if t.note:
+            transactions_html += "<td>" + t.note + "</td>"
+        else:
+            transactions_html += "<td>-</td>"
+        transactions_html += "</tr>"
 
     html = html.replace("{{transactions}}", transactions_html)
     html = html.replace("{{total_income}}", str(round(summary['income'], 2)))
     html = html.replace("{{total_expense}}", str(round(summary['expense'], 2)))
     html = html.replace("{{balance}}", str(round(summary['balance'], 2)))
-    html = html.replace("{{username}}", username) 
-    
+    html = html.replace("{{username}}", username)
+
     return html
-
-
-

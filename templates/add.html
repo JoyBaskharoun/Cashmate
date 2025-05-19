@@ -11,6 +11,7 @@
   <body>
     <main>
       <div id="navbar-placeholder"></div>
+      <div id="modal-placeholder"></div>
 
       <!-- add Transaction Form -->
       <section>
@@ -19,7 +20,6 @@
         <form action="/add" method="POST" id="transaction-form">
           <!-- type selector -->
           <div class="type-selector">
-
             <div class="input-container">
               <input
                 type="radio"
@@ -47,10 +47,16 @@
           </select>
 
           <!-- amount -->
-          <input type="number" name="amount" step="0.01" placeholder="1000" required />
+          <input
+            type="number"
+            name="amount"
+            step="0.01"
+            placeholder="1000"
+            required
+          />
 
           <!-- date -->
-          <input type="datetime-local" name="timestamp"/>
+          <input type="datetime-local" name="timestamp" />
 
           <!-- note -->
           <input type="text" name="note" placeholder="Note (optional)" />
@@ -75,11 +81,11 @@
 
           categorySelect.disabled = false;
 
-          // Clear previous options
+          // clear previous options
           categorySelect.innerHTML =
             '<option value="" disabled selected>Select Category</option>';
 
-          // Add relevant options
+          // Add relevant optiions
           categories[selectedType].forEach((cat) => {
             const option = document.createElement("option");
             option.value = cat;

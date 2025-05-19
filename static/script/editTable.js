@@ -13,19 +13,15 @@ document.querySelectorAll(".edit-btn").forEach((editBtn) => {
 
     // Replace with inputs
     amountCell.innerHTML = `<input type="number" step="0.01" value="${originalAmount}" />`;
-    dateCell.innerHTML = `<input type="datetime-local" value="${formatDateForInput(
-      originalDate
-    )}" />`;
-    noteCell.innerHTML = `<input type="text" value="${
-      originalNote === "—" ? "" : originalNote
-    }" />`;
+    dateCell.innerHTML = `<input type="datetime-local" value="${formatDateForInput(originalDate)}" />`;
+    noteCell.innerHTML = `<input type="text" value="${originalNote === "-" ? "" : originalNote}" />`;
 
     // Replace icons
     const icons = row.querySelector(".icons-container");
     icons.innerHTML = `
-          <img src="/static/images/icons/check.svg" class="action-icon confirm-edit" title="Confirm">
-          <img src="/static/images/icons/cancel.svg" class="action-icon cancel-edit" title="Cancel">
-        `;
+      <img src="/static/images/icons/check.svg" class="action-icon confirm-edit" title="Confirm">
+      <img src="/static/images/icons/cancel.svg" class="action-icon cancel-edit" title="Cancel">
+    `;
 
     icons.querySelector(".confirm-edit").addEventListener("click", () => {
       const updatedAmount = row.querySelector("input[type=number]").value;
@@ -48,41 +44,42 @@ document.querySelectorAll(".edit-btn").forEach((editBtn) => {
     });
 
     icons.querySelector(".cancel-edit").addEventListener("click", () => {
-      location.reload(); 
+      location.reload();
     });
   });
 });
 
 function formatDateForInput(formatted) {
+  // Assumes formatted like "YYYY-MM-DD HH:mm"
   const [date, time] = formatted.split(" ");
   return `${date}T${time}`;
 }
 
-//   Delete
+
+// delete
 document.querySelectorAll(".delete-btn").forEach((delBtn) => {
-  delBtn.addEventListener("click", () => {
+  delBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
     const row = delBtn.closest("tr");
     const id = row.dataset.id;
 
-    fetch("/delete-transaction", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: id }),
-    }).then((res) => {
-      if (res.ok) location.reload();
-      else alert("Failed to delete");
-    });
-  });
-});
+    const modal = document.getElementById("confirm-modal");
+    const message = document.getElementById("confirm-modal-message");
+    const yesBtn = document.getElementById("confirm-modal-yes");
+    const noBtn = document.getElementById("confirm-modal-no");
 
+    message.textContent = "Are you sure you want to delete this transaction?";
+    modal.style.display = "flex";
 
+    // Remove previous listeners by cloning buttons
+    yesBtn.replaceWith(yesBtn.cloneNode(true));
+    noBtn.replaceWith(noBtn.cloneNode(true));
 
-document.querySelectorAll(".delete-btn").forEach((delBtn) => {
-    delBtn.addEventListener("click", (event) => {
-      event.preventDefault();  // Prevent default GET navigation
-      const row = delBtn.closest("tr");
-      const id = row.dataset.id;
-  
+    const newYesBtn = document.getElementById("confirm-modal-yes");
+    const newNoBtn = document.getElementById("confirm-modal-no");
+
+    newYesBtn.addEventListener("click", () => {
       fetch("/delete-transaction", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -91,6 +88,20 @@ document.querySelectorAll(".delete-btn").forEach((delBtn) => {
         if (res.ok) location.reload();
         else alert("Failed to delete");
       });
+      modal.style.display = "none";
     });
+
+    newNoBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // One-time outside click listener
+    function outsideClickListener(e) {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        window.removeEventListener("click", outsideClickListener);
+      }
+    }
+    window.addEventListener("click", outsideClickListener);
   });
-  
+});

@@ -6,7 +6,7 @@ from models.filters import render_grouped_transactions
 
 def add_route():
     if request.method == "GET":
-        return get_html("add")
+        return get_html("add") 
 
     t_type = request.form.get("type")
     category = request.form.get("category")
@@ -14,60 +14,49 @@ def add_route():
     timestamp = request.form.get("timestamp")
     note = request.form.get("note", "")
 
-    # Validate required fields
-    if not t_type or t_type not in ["income", "expense"]:
-        return "Error: Please select a valid transaction type (income or expense)."
+    if t_type not in ["income", "expense"]:
+        return "Error: Select income or expense." 
 
-    if not category or category.strip() == "":
-        return "Error: Category is required."
+    if not category:
+        return "Error: Category required." 
 
     if not amount:
-        return "Error: Amount is required."
+        return "Error: Amount required." 
 
-    # Validate amount is a positive number
     try:
         amount = float(amount)
         if amount <= 0:
-            return "Error: Amount must be greater than zero."
-    except ValueError:
-        return "Error: Invalid amount format."
+            return "Error: Amount must be positive."  # no zero or less
+    except:
+        return "Error: Invalid amount." 
 
-    # Handle timestamp: if not provided or empty, set to current datetime
-    if not timestamp or timestamp.strip() == "":
-        timestamp = datetime.now().isoformat(timespec='minutes')
+    if not timestamp:
+        timestamp = datetime.now().isoformat(timespec='minutes')  # use now if empty
     else:
-        # Optional: validate timestamp format (ISO 8601)
         try:
-            # This will raise ValueError if format is wrong
-            datetime.fromisoformat(timestamp)
-        except ValueError:
-            return "Error: Invalid date/time format."
+            datetime.fromisoformat(timestamp)  # check date format
+        except:
+            return "Error: Bad date/time."  # bad date
 
     email = session.get("email")
-    if not email:
-        return redirect("/login")
 
-    # Call your function to add the transaction
-    add_transaction(email, amount, t_type, category, note, timestamp)
+    add_transaction(email, amount, t_type, category, note, timestamp) 
 
-    return redirect("/dashboard")
+    return redirect("/dashboard")  
+
 
 def income_route():
     email = session.get("email")
-    if not email:
-        return redirect("/login")
 
-    filter_type = request.args.get("filter", "week")
+    filter_type = request.args.get("filter", "all-time")  # get filter or default
     income_html = render_grouped_transactions(email, "income", filter_type)
     html = get_html("income").replace("{{income}}", income_html)
     return html
 
 def expenses_route():
     email = session.get("email")
-    if not email:
-        return redirect("/login")
 
-    filter_type = request.args.get("filter", "week")
+    filter_type = request.args.get("filter", "all-time")  # get filter or default
     expenses_html = render_grouped_transactions(email, "expense", filter_type)
     html = get_html("expenses").replace("{{expenses}}", expenses_html)
     return html

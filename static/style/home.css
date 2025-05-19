@@ -4,11 +4,11 @@
 /* hero section */
 #hero-section-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 56px;
+  gap: 100px;
   margin: 80px 0;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 
 }
 
@@ -20,7 +20,7 @@
 }
 
 #hero-h1 {
-  font-size: 72px;
+  font-size: 84px;
   color: var(--primary);
   margin-bottom: 24px;
 }
@@ -35,13 +35,14 @@
 }
 
 #hero-img {
-  width: 348px;
+  width: 860px;
 }
 
 #right-side-container p {
-  font-size: 18px;
   line-height: 180%;
   margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 #sign-options-container {
@@ -52,8 +53,9 @@
 
 #services {
   display: flex;
-  gap: 16px;
+  gap: 32px;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .card img {
@@ -73,7 +75,7 @@
   border-radius: 24px;
   background: var(--secondary-50);
 
-  max-width: 300px;
+  max-width: 330px;
 }
 
 .card:hover img {

@@ -1,54 +1,26 @@
 <nav id="main-nav">
-  <div id="left-side">
-    <a href="/dashboard"
-      ><img src="../static/images/logo.svg" alt="logo" id="logo"
-    /></a>
+  <div id="insider-nav">
+    <div id="left-side">
+      <a href="/dashboard"
+        ><img src="../static/images/logo.svg" alt="logo" id="logo"
+      /></a>
 
-    <ul>
-      <li><a href="/dashboard"> Home</a></li>
-      <li><a href="/expenses">Expenses</a></li>
-      <li><a href="/income">Income</a></li>
-    </ul>
-  </div>
-
-  <!-- user welcome msg -->
-  <div id="right-side">
-    <img
-      src="/static/images/icons/mdi_theme-light-dark.svg"
-      alt="theme icon"
-      id="theme-icon"
-      onclick="toggleTheme()"
-    />
-
-    <div id="welcomeUserMsg">
-      <!-- Hey <span id="user-display"></span>! -->
-
-      <div id="drop-down-container">
-        <div id="drop-down-arrow">
-          <img
-            src="../static/images/icons/arrow.svg"
-            alt="arrow"
-            class="icon"
-          />
-        </div>
-        <div id="drop-down-menu">
-          <p id="logout">Log out</p>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/expenses">Expenses</a></li>
+        <li><a href="/income">Income</a></li>
+      </ul>
     </div>
-  </div>
 
-  <!-- Custom confirmation modal -->
-  <div id="logout-modal" class="modal" style="display: none">
-    <div class="modal-content">
-      <p style="font-weight: 500; margin-bottom: 16px">
-        Are you sure you want to log out?
-      </p>
-      <div class="" style="display: flex; justify-content: center; gap: 8px">
-        <button id="confirm-logout" class="secondary-button">
-          Yes, log out
-        </button>
-        <button id="cancel-logout" class="primary-button">Cancel</button>
+    <div id="right-side">
+      <img
+        src="/static/images/icons/mdi_theme-light-dark.svg"
+        alt="theme icon"
+        id="theme-icon"
+        onclick="toggleTheme()"
+      />
+      <div id="welcomeUserMsg">
+        <button id="logout" class="secondary-button">Logout</button>
       </div>
     </div>
   </div>

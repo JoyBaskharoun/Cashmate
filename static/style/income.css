@@ -46,14 +46,14 @@ select option {
   font-weight: 500;
 }
 
-button {
+.button {
   background-color: var(--primary);
   color: var(--white);
   border: var(--primary);
   cursor: pointer;
 }
 
-button:hover {
+.button:hover {
   border: var(--primary);
 }
 
@@ -71,6 +71,7 @@ table {
 
 .thead {
   background-color: var(--primary);
+ text-align: left;
 }
 
 .thead th{

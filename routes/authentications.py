@@ -2,23 +2,24 @@ from flask import request, redirect, session
 import json
 from utils import get_html, add_info
 
-
 u_file = "data/users.json"
 
 def hash_password(password):
-    return password + "xyz"
+    return password + "xyz"  
 
 def read_users():
     try:
-        with open(u_file, "r") as file:
-            return json.load(file)
+        file = open(u_file, "r")
+        users = json.load(file)
+        file.close()
+        return users
     except:
         return []
 
 def save_users(users):
-    with open(u_file, "w") as file:
-        json.dump(users, file)
-
+    file = open(u_file, "w")
+    json.dump(users, file)
+    file.close()
 
 def signup_route():
     message = ""
@@ -28,19 +29,23 @@ def signup_route():
         password = request.form.get("password", "")
         confirm_password = request.form.get("confirm-password", "")
 
-        if not email or not username or not password or not confirm_password:
-            message = "Please fill in all fields."
+        if email == "" or username == "" or password == "" or confirm_password == "":
+            message = "Fill all fields."
         elif len(username) < 3:
-            message = "First name must be at least 3 characters."
+            message = "Username too short."
         elif len(password) < 6:
-            message = "Password must be at least 6 characters."
+            message = "Password too short."
         elif password != confirm_password:
-            message = "Passwords do not match!"
+            message = "Passwords don't match."
         else:
             users = read_users()
-            # check if email already taken
-            if any(u["email"] == email for u in users):
-                message = "Email is already registered."
+            found = False
+            for u in users:
+                if u["email"] == email:
+                    found = True
+                    break
+            if found:
+                message = "Email taken."
             else:
                 users.append({
                     "email": email,
@@ -55,9 +60,6 @@ def signup_route():
 
     return get_html("signup")
 
-
-
-
 def login_route():
     message = ""
     if request.method == "POST":
@@ -65,21 +67,26 @@ def login_route():
         password = request.form.get("password", "")
 
         users = read_users()
-        user_match = next(
-            (u for u in users if u["email"] == email and u["password"] == hash_password(password)),
-            None,
-        )
+        user_match = None
+        for u in users:
+            if u["email"] == email and u["password"] == hash_password(password):
+                user_match = u
+                break
+
         if user_match:
             session["email"] = user_match["email"]
-            return redirect("/dashboard")
+            return """
+                <script>
+                  localStorage.setItem('email', '{}');
+                  window.location.href = '/dashboard';
+                </script>
+                """.format(user_match["email"])
         else:
             message = "Wrong email or password."
 
         return get_html("login", message=message)
 
     return get_html("login")
-
-
 
 def logout_route():
     session.clear()

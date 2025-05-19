@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, Response, jsonify
+from flask import Flask, session, redirect, Response, jsonify
 from routes.authentications import signup_route, login_route, logout_route
 from routes.dashboard import dashboard_route
 from routes.transactions import add_route, income_route, expenses_route
@@ -9,12 +9,12 @@ app = Flask(__name__)
 app.secret_key = "strong-secret-key"
 
 # decorator function keeping some urls protected for none reg users
-def login_required(f):  #f is for ex a flask route handler
+def login_required(f): 
     def decorated_function():
         if "email" not in session:
-            return redirect(url_for("login"))
+            return redirect("login")
         return f() 
-    decorated_function.__name__ = f.__name__ # perserve original func name (else flask sees every deco fun as "deco_func") causing conflicts. flask uses __name__ to reg routes
+    decorated_function.__name__ = f.__name__ # perserve original func name 
     return decorated_function
 
 
@@ -25,19 +25,19 @@ def navbar():
 @app.route("/")
 def home():
     if "email" in session:
-        return redirect(url_for("dashboard"))
+        return redirect("dashboard")
     return get_html("index")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if "email" in session:
-        return redirect(url_for("dashboard"))
+        return redirect("dashboard")
     return signup_route()
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if "email" in session:
-        return redirect(url_for("dashboard"))
+        return redirect("dashboard")
     return login_route()
 
 @app.route("/logout")
@@ -49,7 +49,7 @@ def logout():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return dashboard_route() #page content
+    return dashboard_route()
 
 @app.route("/add", methods=["GET", "POST"]) #must specificaly say that it accepts both get and post
 @login_required
@@ -80,9 +80,10 @@ def expenses():
 @app.route('/data/transactions.json')
 @login_required
 def serve_transactions_file():
-    with open("data/transactions.json", "r") as file:
-        content = file.read()
-        return Response(content)
+    file = open("data/transactions.json", "r") 
+    content = file.read()                       
+    file.close()
+    return Response(content)
 
 
 @app.route("/api/user-email")
@@ -90,6 +91,15 @@ def serve_transactions_file():
 def get_user_email():
     return jsonify({"email": session.get("email")})
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return get_html('404')
+
+@app.after_request
+def add_cache_control_header(response):
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate'
+    return response
 
 if __name__ == "__main__":
     app.run(debug=True)
