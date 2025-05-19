@@ -21,6 +21,8 @@ def save_users(users):
     json.dump(users, file)
     file.close()
 
+from flask import session
+
 def signup_route():
     message = ""
     if request.method == "POST":
@@ -33,6 +35,8 @@ def signup_route():
             message = "Fill all fields."
         elif len(username) < 3:
             message = "Username too short."
+        elif not username.isalpha():
+            message = "Username must contain letters only."
         elif len(password) < 6:
             message = "Password too short."
         elif password != confirm_password:
@@ -54,11 +58,23 @@ def signup_route():
                 })
                 save_users(users)
                 add_info(username)
-                return '<meta http-equiv="refresh" content="0; url=/login" />'
+
+                # Set server-side session
+                session["email"] = email
+                session["username"] = username
+
+                # Return JS snippet to save email in localStorage and redirect
+                return f"""
+                <script>
+                  localStorage.setItem('email', '{email}');
+                  window.location.href = '/dashboard';
+                </script>
+                """
 
         return get_html("signup", message=message)
 
     return get_html("signup")
+
 
 def login_route():
     message = ""

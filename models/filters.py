@@ -30,6 +30,15 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
             filtered.append(t)
     filtered = filter_transactions_by_date(filtered, filter_type)
 
+    if len(filtered) == 0:
+        return f"""
+        <tr>
+            <td colspan="4" style="text-align:center; font-style: italic;">
+                You haven't added transactions yet.
+            </td>
+        </tr>
+        """
+
     # sort by date descending
     for i in range(len(filtered)):
         for j in range(len(filtered) - i - 1):
@@ -63,7 +72,7 @@ def render_grouped_transactions(email, t_type_filter, filter_type):
         for t in trans:
             note = t.note if t.note else "-"
             html += f"""
-            <tr data-id="{t.id}">
+            <tr class="tr" data-id="{t.id}">
                 <td class="amount-cell">${t.amount:.2f}</td>
                 <td class="date-cell">{t.formatted_date()}</td>
                 <td class="note-cell">{note}</td>

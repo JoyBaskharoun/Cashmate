@@ -22,9 +22,10 @@
   --overlay: rgba(20, 13, 32, 0.85);
 
   /* padding */
-  --main-padding: 1em 180px;
-  --m-padding: 1em 120px;
-  --s-padding: 1em 60px;
+  --main-padding: 1em 160px;
+  --m-padding: 1em 80px;
+  --s-padding: 1em 40px;
+  --xs-padding: 1em 18px;
 
   /* fonts */
   --main-font: "IBM Plex Sans", sans-serif;
@@ -35,9 +36,12 @@
   --main-shadow: 1px 1px 8px rgba(42, 42, 42, 0.2);
 }
 
+/* dark theme */
 :root.dark-theme {
-  --primary: rgb(94, 83, 121);
-  --accent: rgba(231, 109, 109, 1);
+  --primary: #5a4d7c;
+  --primary-50: rgba(30, 27, 39, 0.5);
+  --primary-30: rgba(94, 83, 121, 0.3);
+  --accent: #e76d6d;
   --accent-dark: #e25858;
 
   --secondary: rgb(85, 83, 78);
@@ -47,7 +51,7 @@
 
   --background: rgb(33, 31, 37);
   --positive-signal: rgba(189, 204, 126, 1);
-  --negative-signal: rgba(231, 133, 149, 1);
+  --negative-signal: #eb657c;
 
   --text-primary: rgba(245, 245, 245, 1);
   --text-secondary: rgba(180, 180, 180, 1);
@@ -55,6 +59,25 @@
   --main-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
 }
 
+.dark-theme #theme-icon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(152deg) brightness(103%) contrast(103%);
+}
+
+.dark-theme #modal-p {
+  color: rgba(42, 42, 42, 1);
+}
+
+.dark-theme input,
+.dark-theme select {
+  background-color: var(--primary-50);
+}
+
+select:disabled{
+  color: grey;
+}
+
+/* global */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -84,7 +107,7 @@ h3 {
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
 }
 
@@ -97,17 +120,7 @@ h3 {
   font-size: 20px;
   font-weight: 700;
 }
-h1 {
-  font-size: 1.75rem; /* ~28px if root is 16px */
-}
 
-h2 {
-  font-size: 1.5rem; /* ~24px */
-}
-
-h3 {
-  font-size: 1.25rem; /* ~20px */
-}
 /* links */
 a {
   color: inherit;
@@ -131,7 +144,7 @@ button {
   align-items: center;
   background-color: transparent;
   border: 2px solid var(--accent);
-  gap: 5px;
+  gap: 4px;
   border-radius: 100px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
@@ -193,7 +206,6 @@ input[type="number"] {
   top: 0;
   left: 0;
   box-shadow: 1px 1px 2px rgba(46, 31, 71, 0.2);
-  height: 64px;
   width: 100%;
   box-sizing: border-box;
   backdrop-filter: blur(4px);
@@ -204,8 +216,12 @@ input[type="number"] {
   -o-border-radius: 0 0 24px 24px;
 }
 
+nav {
+  padding: var(--main-padding);
+}
+
 #main-nav {
-  justify-content: center;
+  width: 100%;
 }
 
 .home-nav,
@@ -219,11 +235,10 @@ input[type="number"] {
 }
 
 #insider-nav {
-  width: 1600px;
   display: flex;
   justify-content: space-between;
+  width: 100%;
   align-items: center;
-  margin: 0 auto;
 }
 
 #logo {
@@ -281,6 +296,7 @@ nav li:hover {
 .modal-content button {
   padding: 8px 16px;
   cursor: pointer;
+  font-size: inherit;
 }
 
 select {
@@ -295,7 +311,8 @@ select option {
 main {
   margin: 0 auto;
   max-width: 1600px;
-  margin-top: 120px;
+  margin-top: 40px;
+  padding: var(--main-padding);
 }
 
 /* hover effects */
@@ -319,8 +336,135 @@ button:hover {
   color: var(--text-primary);
 }
 
-/* Responsive */
+/* responsive */
+/* padding */
+@media (max-width: 1200px) {
+  nav,
+  main {
+    padding: var(--m-padding);
+  }
+}
+
+@media (max-width: 860px) {
+  nav,
+  main {
+    padding: var(--s-padding);
+  }
+}
 
 @media (max-width: 768px) {
+  /* pading */
+  nav,
+  main {
+    padding: var(--xs-padding);
+  }
 
+  /* navbar */
+  #insider-nav {
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  nav #left-side {
+    gap: 24px;
+  }
+
+  #logo {
+    width: 100px;
+  }
+
+  nav ul {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  nav li a {
+    font-size: 16px;
+  }
+
+  nav #right-side {
+    gap: 12px;
+  }
+
+  #theme-icon {
+    width: 20px;
+  }
+
+  #logout {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 511px) {
+  nav ul {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav #left-side {
+    gap: 16px;
+  }
+
+  nav #logo {
+    width: 80px;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
+
+  nav #right-side {
+    gap: 10px;
+  }
+
+  #theme-icon {
+    width: 18px;
+  }
+
+  #logout {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .modal-content p,
+  .modal-content button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  #main-nav #logo {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  #insider-nav {
+    width: 95%;
+    align-items: center;
+    gap: 16px;
+  }
+
+  nav #left-side {
+    gap: 8px;
+  }
+
+  #logo {
+    width: 72px;
+  }
+
+  nav ul {
+    gap: 8px;
+  }
+
+  nav ul li a {
+    font-size: 14px;
+  }
+
+  nav #right-side {
+    gap: 8px;
+  }
 }

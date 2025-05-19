@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
     <title>404 - Page Not Found</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-theme");
+        } else {
+          document.documentElement.classList.remove("dark-theme");
+        }
+      })();
+    </script>
     <style>
       body {
         display: flex;

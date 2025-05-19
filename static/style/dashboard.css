@@ -31,7 +31,8 @@
 }
 
 .dashboard-table-header img {
-  filter: invert(53%) sepia(7%) saturate(4933%) hue-rotate(315deg) brightness(92%) contrast(92%);
+  filter: invert(53%) sepia(7%) saturate(4933%) hue-rotate(315deg)
+    brightness(92%) contrast(92%);
 }
 
 .dashboard-main-section {
@@ -98,7 +99,7 @@
   width: 100%;
 }
 
-.right-side{
+.right-side {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -150,12 +151,10 @@ tbody tr:hover {
   color: var(--primary);
 }
 
-
 .chart-container {
   max-width: 200px;
   margin: 2rem auto;
 }
-
 
 .color-box {
   width: 14px;
@@ -164,29 +163,36 @@ tbody tr:hover {
   border: 2px solid var(--white);
 }
 
-.color-box-cont{
+.color-box-cont {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-#all-expenses .color-box{
-  background: var(--secondary-darker);
+#all-expenses .color-box {
+  background: rgb(177, 162, 143);
 }
-#all-income .color-box{
-  background: var(--primary);
+#all-income .color-box {
+  background: #9c90ad;
 }
-
 
 #income,
-#expenses{
+#expenses {
   font-weight: normal;
 }
 
-
-
+.dark-theme .dashboard-main-section {
+  background-color: var(--primary-30);
+}
 
 /* Responsivness */
+
+@media (max-width:1020px){
+  .note {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
   #dashboard-body {
@@ -194,11 +200,11 @@ tbody tr:hover {
     gap: 24px;
   }
 
-  #summary-section, #recent-transaction-section {
-    width: 100% !important; /* override fixed widths */
+  #summary-section,
+  #recent-transaction-section {
+    width: 100% !important;
   }
 }
-
 
 @media (max-width: 1024px) {
   #summary-section {
@@ -207,18 +213,19 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
-  #summary-section, #recent-transaction-section {
+  #summary-section,
+  #recent-transaction-section {
     width: 100%;
   }
 }
-
 
 @media (max-width: 480px) {
   .summary-p span {
     font-size: 16px;
   }
 
-  #dashboard-table th, #dashboard-table td {
+  #dashboard-table th,
+  #dashboard-table td {
     padding: 0.5rem;
     font-size: 14px;
   }
@@ -226,26 +233,38 @@ tbody tr:hover {
   #add-transaction-container img {
     width: 60px;
   }
-}
 
+    #summary {
+    gap: 8px;
+  }
+}
 
 @media (max-width: 480px) {
   #summary {
     gap: 16px;
   }
 
-  .summary-p.current {
-    flex-direction: column;
-    align-items: flex-start;
+  .h3 {
+    font-size: 18px;
   }
 
-  .summary-link {
-    flex-direction: column;
-    align-items: flex-start;
+  .summary-p p {
+    font-size: 16px;
   }
 
-  .summary-link img.icon {
-    rotate: 0deg;
-    margin-top: 8px;
+  #add-transaction-container {
+    margin-top: 48px;
+    margin-bottom: 20px;
   }
+
+  .chart-container {
+    max-width: 160px;
+    margin: 1rem auto;
+  }
+}
+
+/* dark theme */
+.dark-theme .icon {
+  filter: brightness(0) saturate(100%) invert(78%) sepia(27%) saturate(4183%)
+    hue-rotate(308deg) brightness(88%) contrast(107%);
 }

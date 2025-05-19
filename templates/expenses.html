@@ -3,43 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style/style.css">
-    <link rel="stylesheet" href="../static/style/income.css">
+    <link rel="stylesheet" href="../static/style/style.css" />
+    <link rel="stylesheet" href="../static/style/income.css" />
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
     <title>Expenses</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-theme");
+        } else {
+          document.documentElement.classList.remove("dark-theme");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="navbar-placeholder"></div>
     <div id="modal-placeholder"></div>
 
     <main>
-    <h2>All Expenses</h2>
+      <h2>All Expenses</h2>
 
-    <form method="GET" action="/expenses">
-      <select name="filter" id="filter">
-        <option value="day">Day</option>
-        <option value="week">Week</option>
-        <option value="month">Month</option>
-        <option value="year">Year</option>
-        <option value="all-time">All time</option>
-      </select>
-      <button type="submit" class="button">Apply</button>
-    </form>
+      <form id="filter-form">
+        <select name="filter" id="filter">
+          <option value="day">Day</option>
+          <option value="week">Week</option>
+          <option value="month">Month</option>
+          <option value="year">Year</option>
+          <option value="all-time">All time</option>
+        </select>
+        <button type="submit" class="button">Apply</button>
+      </form>
 
-    <table>
-      <thead class="thead">
-        <tr>
-          <th>Category</th>
-          <th class="total">Total</th>
-        </tr>
-      </thead>
-      <tbody id="expenses-table">
-        {{expenses}}
-      </tbody>
-    </table>
-  </main>
+      <table class="table">
+        <thead class="thead">
+          <tr>
+            <th>Category</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody id="expenses-table">
+          {{expenses}}
+        </tbody>
+      </table>
+    </main>
 
-  <script src="../static/script/script.js"></script>
-  <script src="../static/script/editTable.js"></script>
+    <script src="../static/script/script.js"></script>
+    <script src="../static/script/editTable.js"></script>
   </body>
 </html>

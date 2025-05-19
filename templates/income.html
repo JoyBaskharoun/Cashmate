@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/style/style.css" />
     <link rel="stylesheet" href="../static/style/income.css" />
-    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
     <title>Income</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-theme");
+        } else {
+          document.documentElement.classList.remove("dark-theme");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="navbar-placeholder"></div>
@@ -27,7 +37,7 @@
         <button type="submit" class="button">Apply</button>
       </form>
 
-      <table>
+      <table class="table"> 
         <thead class="thead">
           <tr>
             <th>Category</th>

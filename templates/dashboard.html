@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="../static/style/dashboard.css" />
     <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
     <title>Dashboard</title>
+    <script>
+      (function () {
+        var theme = localStorage.getItem("theme");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark-theme");
+        } else {
+          document.documentElement.classList.remove("dark-theme");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="navbar-placeholder"></div>
@@ -30,11 +40,13 @@
       </div>
 
       <section id="dashboard-body">
+        <!-- summary -->
         <section id="summary-section" class="dashboard-main-section">
           <div class="dashboard-table-header">
             <img src="../static/images/icons/summary.svg" alt="icon" />
             <h3 class="h3">Summary</h3>
           </div>
+
           <div id="summary" class="dashboard-sub">
             <div class="summary-p current">
               <p>Current Balance:</p>
@@ -97,7 +109,7 @@
                   <th>Amount</th>
                   <th>Category</th>
                   <th>Date</th>
-                  <th>Note</th>
+                  <th class="note">Note</th>
                 </tr>
               </thead>
               <tbody id="transaction-table">
@@ -144,6 +156,16 @@
               expenses += Number(t.amount);
             }
           });
+
+
+          // hide chart if no transactions
+          const chartElement = document.getElementById("financeChart");
+          if (income === 0 && expenses === 0) {
+            chartElement.style.display = "none";
+            return;
+          } else {
+            chartElement.style.display = "block"; 
+          }
 
           const ctx = document.getElementById("financeChart").getContext("2d");
           new Chart(ctx, {

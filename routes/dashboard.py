@@ -22,18 +22,28 @@ def dashboard_route():
     transactions = recent_transactions(email)
     summary = get_summary(email)
 
-    transactions_html = ""
-    for t in transactions:
-        transactions_html += "<tr>"
-        transactions_html += "<td>" + t.t_type.capitalize() + "</td>"
-        transactions_html += "<td>$" + str(t.amount) + "</td>"
-        transactions_html += "<td>" + t.category + "</td>"
-        transactions_html += "<td>" + t.formatted_date() + "</td>"
-        if t.note:
-            transactions_html += "<td>" + t.note + "</td>"
-        else:
-            transactions_html += "<td>-</td>"
-        transactions_html += "</tr>"
+    if len(transactions) == 0:
+        # Show message when no transactions exist
+        transactions_html = """
+        <tr>
+            <td colspan="5" style="text-align:center; font-style: italic;">
+                You haven't added any transactions yet.
+            </td>
+        </tr>
+        """
+    else:
+        transactions_html = ""
+        for t in transactions:
+            transactions_html += "<tr>"
+            transactions_html += "<td>" + t.t_type.capitalize() + "</td>"
+            transactions_html += "<td>$" + str(t.amount) + "</td>"
+            transactions_html += "<td>" + t.category + "</td>"
+            transactions_html += "<td>" + t.formatted_date() + "</td>"
+            if t.note:
+                transactions_html += "<td class='note'>" + t.note + "</td>"
+            else:
+                transactions_html += "<td class='note'>-</td>"
+            transactions_html += "</tr>"
 
     html = html.replace("{{transactions}}", transactions_html)
     html = html.replace("{{total_income}}", str(round(summary['income'], 2)))

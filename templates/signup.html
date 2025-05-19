@@ -12,8 +12,8 @@
     <nav class="login-nav">
       <div id="insider-nav">
         <a href="/"
-        ><img src="../static/images/logo.svg" alt="logo" id="logo"
-      /></a>
+          ><img src="../static/images/logo.svg" alt="logo" id="logo"
+        /></a>
       </div>
     </nav>
 
@@ -37,17 +37,12 @@
               placeholder="First Name"
               minlength="3"
               maxlength="20"
-              pattern="^[A-Za-z0-9_]+$"
-              title="Username should be 3–20 characters, letters, numbers, or underscores only."
+              pattern="^[A-Za-z]+$"
+              title="Username should be 3 to 20 characters, letters, numbers, or underscores only."
               required
             />
 
-            <input
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              required
-            />
+            <input type="email" name="email" placeholder="E-mail" required />
 
             <input
               type="password"
@@ -64,7 +59,7 @@
               placeholder="Confirm Password"
               required
             />
-            
+            <div id="message">{{message}}</div>
           </div>
           <button type="submit" class="primary-button" style="width: 100%">
             Sign Up

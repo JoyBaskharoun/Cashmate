@@ -71,14 +71,15 @@ table {
 
 .thead {
   background-color: var(--primary);
- text-align: left;
+  text-align: left;
 }
 
-.thead th{
+.thead th {
   color: var(--white);
 }
 
-td{
+.tr {
+  background-color: var(--primary-50);
 }
 
 .total,
@@ -104,4 +105,98 @@ td {
 
 .action-icon {
   cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  form#filter-form {
+    gap: 8px;
+    padding: 0 20px;
+  }
+
+  select {
+    font-size: 16px;
+    padding: 6px 12px;
+    min-width: 100px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+
+  table {
+    font-size: 16px;
+    max-width: 100%;
+    margin: 0 10px 30px 10px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+
+  option{
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+  }
+
+  #filter-form {
+    gap: 12px;
+  }
+
+  select,
+  .button {
+    width: 100%;
+    min-width: unset;
+    padding: 10px;
+  }
+
+  table {
+    margin: 4px;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  option{
+    font-size: 14px;
+  }
+
+  .action-icon {
+    width: 18px;
+  }
+}
+
+/* dark theme */
+.dark-theme .table {
+  background-color: var(--primary-30);
+}
+
+.dark-theme .delete-btn {
+  filter: brightness(0) saturate(100%) invert(65%) sepia(60%) saturate(4172%)
+    hue-rotate(312deg) brightness(97%) contrast(89%);
+}
+
+.dark-theme option{
+  background-color: var(--overlay);
+}
+
+.dark-theme select{
+  background-color: var(--secondary-50);
 }

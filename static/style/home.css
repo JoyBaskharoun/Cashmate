@@ -1,15 +1,15 @@
 @import url(style.css);
-
-
+main{
+  padding: 0;
+}
 /* hero section */
 #hero-section-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 100px;
-  margin: 80px 0;
+  width: 100%;
+  margin: 120px 0;
   margin-bottom: 120px;
-
 }
 
 #hero-h1 i,
@@ -86,4 +86,76 @@
 .card:hover {
   background-color: var(--secondary-dark);
   transition: all .5s ease;
+}
+
+
+
+/* reponsive */
+@media (max-width: 768px) {
+  #hero-section-container {
+    flex-direction: column;
+    gap: 40px;
+    margin: 100px 0;
+  }
+
+  #hero-h1 {
+    font-size: 56px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  #right-side-container p {
+    text-align: center;
+  }
+
+  #hero-img {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  #sign-options-container {
+    justify-content: center;
+  }
+
+  #services {
+    flex-direction: column;
+    gap: 56px;
+    margin-bottom: 100px;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  .card img {
+    width: 60px;
+    top: -30px;
+  }
+}
+
+
+@media (max-width: 370px) {
+  #hero-h1 {
+    font-size: 48px;
+  }
+
+  #right-side-container p {
+    font-size: 18px;
+  }
+
+  #hero-img {
+    max-width: 100%;
+  }
+
+  #services {
+    gap: 16px;
+  }
+
+  .card img {
+    width: 50px;
+    top: -25px;
+  }
 }
