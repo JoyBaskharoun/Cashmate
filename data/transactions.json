@@ -1,3 +1,1 @@
-{
-    "joy@mail.com": []
-}
+{"joy@mail.com": [{"amount": 500.0, "t_type": "income", "category": "Freelance", "timestamp": "2025-05-21T20:47", "note": "", "id": "99481432-c6eb-4d6e-afd0-d4bf4724bf0a"}, {"amount": 5000.0, "t_type": "income", "category": "Salary", "timestamp": "2025-05-21T20:51", "note": "", "id": "9a3fb198-849f-4430-9e75-b60336cfa855"}]}

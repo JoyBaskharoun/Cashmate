@@ -360,11 +360,6 @@ button:hover {
   }
 
   /* navbar */
-  #insider-nav {
-    justify-content: space-between;
-    gap: 12px;
-  }
-
   nav #left-side {
     gap: 24px;
   }

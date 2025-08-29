@@ -2,6 +2,17 @@
 main{
   padding: 0;
 }
+
+/* nav bar */
+.insider-nav {
+  justify-content: space-between;
+}
+
+.home-nav button,
+h1 {
+  text-wrap: nowrap;
+}
+
 /* hero section */
 #hero-section-container {
   display: flex;
