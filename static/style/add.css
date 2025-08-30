@@ -94,7 +94,7 @@ input[type="radio"]:checked + .type-box {
 
   select,
   input[type="number"],
-  input[type="datetime-local"],
+  input[type="date"],
   input[type="text"],
   .primary-button,
   .type-box {
@@ -130,7 +130,7 @@ input[type="radio"]:checked + .type-box {
 
   select,
   input[type="number"],
-  input[type="datetime-local"],
+  input[type="date"],
   input[type="text"] {
     font-size: 12px;
     padding: 6px 8px;

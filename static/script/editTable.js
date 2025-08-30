@@ -13,7 +13,7 @@ document.querySelectorAll(".edit-btn").forEach((editBtn) => {
 
     // Replace with inputs
     amountCell.innerHTML = `<input type="number" step="0.01" value="${originalAmount}" />`;
-    dateCell.innerHTML = `<input type="datetime-local" value="${formatDateForInput(originalDate)}" />`;
+    dateCell.innerHTML = `<input type="date" value="${formatDateForInput(originalDate)}" />`;
     noteCell.innerHTML = `<input type="text" value="${originalNote === "-" ? "" : originalNote}" />`;
 
     // Replace icons
@@ -25,7 +25,7 @@ document.querySelectorAll(".edit-btn").forEach((editBtn) => {
 
     icons.querySelector(".confirm-edit").addEventListener("click", () => {
       const updatedAmount = row.querySelector("input[type=number]").value;
-      const updatedDate = row.querySelector("input[type=datetime-local]").value;
+      const updatedDate = row.querySelector("input[type=date]").value;
       const updatedNote = row.querySelector("input[type=text]").value;
 
       fetch("/update-transaction", {
