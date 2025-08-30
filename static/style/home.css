@@ -18,9 +18,10 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
   width: 100%;
   margin: 120px 0;
-  margin-bottom: 120px;
+  padding: var(--main-padding);
 }
 
 #hero-h1 i,
@@ -33,7 +34,7 @@ h1 {
 #hero-h1 {
   font-size: 84px;
   color: var(--primary);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 #hero-h1 span {
@@ -46,13 +47,12 @@ h1 {
 }
 
 #hero-img {
-  width: 860px;
+  width: 100%;
 }
 
 #right-side-container p {
-  line-height: 180%;
+  line-height: 140%;
   margin-bottom: 24px;
-  font-weight: 400;
   font-size: 24px;
 }
 
@@ -102,6 +102,34 @@ h1 {
 
 
 /* reponsive */
+@media (max-width: 1200px) {
+  #hero-section-container {
+    gap: 24px;
+    margin: 100px 0;
+    padding: var(--s-padding);
+  }
+
+  #hero-h1 {
+    font-size: 56px;
+  }
+
+  #services{
+    padding: var(--s-padding);
+    gap: 10px;
+  }
+
+  #right-side-container p {
+    font-size: var(--text-body-size);
+  }
+}
+
+@media (max-width: 861px) {
+  #hero-section-container,
+  #services {
+    padding: var(--m-padding);
+  }
+}
+
 @media (max-width: 768px) {
   #hero-section-container {
     flex-direction: column;
@@ -154,7 +182,7 @@ h1 {
   }
 
   #right-side-container p {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   #hero-img {
