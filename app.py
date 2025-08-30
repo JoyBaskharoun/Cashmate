@@ -1,15 +1,12 @@
-from flask import Flask, session, redirect, Response, jsonify, render_template
-from jinja2 import FileSystemLoader
-import os
+from flask import Flask, session, redirect, Response, jsonify
 from routes.authentications import signup_route, login_route, logout_route
 from routes.dashboard import dashboard_route
 from routes.transactions import add_route, income_route, expenses_route
 from routes.edits import update_transaction, delete_transaction
+from utils import get_html
 
 
-template_paths = [os.path.join(os.path.dirname(__file__), path) for path in ['.', 'templates']]
 app = Flask(__name__)
-app.jinja_loader = FileSystemLoader(template_paths)
 app.secret_key = "strong-secret-key"
 
 # decorator function keeping some urls protected for none reg users
@@ -24,13 +21,13 @@ def login_required(f):
 
 @app.route('/navbar')
 def navbar():
-    return render_template('navbar.html')
+    return get_html('navbar')
 
 @app.route("/")
 def home():
     if "email" in session:
         return redirect("dashboard")
-    return render_template("index.html")
+    return get_html("index")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -97,7 +94,7 @@ def get_user_email():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html')
+    return get_html('404')
 
 @app.after_request
 def add_cache_control_header(response):
